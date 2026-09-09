@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+*.local
+.DS_Store
+
+# 內部素材：IG 抓取內容、教練提供的原始照片，版權屬 Kaito，repo 為 public 絕不可上傳
+_scraped/
+_assets_raw/
