@@ -17,9 +17,9 @@
   --line: rgba(243, 240, 232, 0.18);
 
   /* 字級系統：8 級，刻意拉開跳躍。改字級請改這裡，不要在元件裡寫死數值。 */
-  --t-display: clamp(3.4rem, 15vw, 9.5rem);
-  --t-h1: clamp(2.6rem, 10vw, 6.2rem);
-  --t-h2: clamp(1.9rem, 6.5vw, 4rem);
+  --t-display: clamp(2.6rem, 8.5vw, 6.2rem);
+  --t-h1: clamp(2.2rem, 7vw, 4.6rem);
+  --t-h2: clamp(1.75rem, 5vw, 3.1rem);
   --t-h3: 1.35rem;
   --t-body: .95rem;
   --t-small: .84rem;
@@ -102,7 +102,7 @@ button { font: inherit; }
 .hero-glow { position: absolute; z-index: -1; top: 13%; right: -15%; width: 22rem; aspect-ratio: 1; border: 1px solid rgba(81,210,189,.2); border-radius: 50%; box-shadow: 0 0 7rem rgba(81,210,189,.12); }
 .hero-waves { position: absolute; z-index: -1; inset: 0; width: 100%; height: 100%; }
 .hero-content { padding-block: 9rem 10rem; }
-.hero h1 { max-width: 9ch; margin: 0; font-size: var(--t-display); font-weight: 850; line-height: .88; letter-spacing: -.065em; }
+.hero h1 { max-width: 12ch; margin: 0; font-size: var(--t-display); font-weight: 850; line-height: 1.08; letter-spacing: -.01em; }
 .hero-copy { max-width: 32rem; margin: 2rem 0 0; color: rgba(243,240,232,.72); font-size: var(--t-body); font-weight: 300; font-weight: 300; line-height: 1.9; }
 .button-row { margin-top: 2.25rem; display: flex; flex-direction: column; align-items: stretch; gap: .75rem; }
 .button { min-height: 3.25rem; padding: .85rem 1.2rem; display: inline-flex; align-items: center; justify-content: center; gap: .85rem; border: 1px solid transparent; font-size: var(--t-small); font-weight: 750; letter-spacing: .035em; transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease; }
@@ -120,7 +120,7 @@ button { font: inherit; }
 .section { position: relative; padding-block: 5.5rem; background: var(--abyss); }
 .section--foam { color: var(--ink); background: var(--foam); }
 .section-heading { max-width: 37rem; margin-bottom: 2.7rem; }
-.section-heading h2, .coach-copy h2, .booking-content h2 { margin: 0; font-size: var(--t-h2); font-weight: 800; line-height: .98; letter-spacing: -.05em; }
+.section-heading h2, .coach-copy h2, .booking-content h2 { margin: 0; font-size: var(--t-h2); font-weight: 800; line-height: 1.15; letter-spacing: -.005em; }
 .section-heading > p:last-child { margin: 1.2rem 0 0; color: rgba(243,240,232,.64); font-weight: 300; line-height: 1.8; }
 .section-heading--dark .eyebrow, .coach-copy .eyebrow { color: #168e7f; }
 .section-heading--dark > p:last-child { color: rgba(16,35,41,.68); }
@@ -230,7 +230,7 @@ button { font: inherit; }
 .inner-hero::after { content: ''; position: absolute; inset: 0; opacity: .24; background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 3rem 3rem; mask-image: linear-gradient(to bottom, black, transparent); }
 .inner-hero__orb { position: absolute; right: -7rem; bottom: 1rem; width: 20rem; aspect-ratio: 1; border: 1px solid rgba(81,210,189,.24); border-radius: 50%; }
 .inner-hero__content { position: relative; z-index: 1; }
-.inner-hero h1 { max-width: 11ch; margin: 0; font-size: var(--t-h1); font-weight: 850; line-height: .92; letter-spacing: -.06em; }
+.inner-hero h1 { max-width: 13ch; margin: 0; font-size: var(--t-h1); font-weight: 850; line-height: 1.1; letter-spacing: -.01em; }
 .inner-hero__content > p:last-child { max-width: 35rem; margin: 1.5rem 0 0; color: rgba(243,240,232,.68); font-size: var(--t-body); font-weight: 300; line-height: 1.8; }
 .about-story__grid { display: grid; gap: 2.8rem; }
 .photo-placeholder--about { min-height: 29rem; }
