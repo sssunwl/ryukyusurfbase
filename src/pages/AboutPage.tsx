@@ -9,7 +9,6 @@ export function AboutPage() {
   return (
     <div className="inner-page about-page">
       <section className="inner-hero" aria-labelledby="about-page-title">
-        <div className="inner-hero__orb" aria-hidden="true" />
         <div className="shell inner-hero__content">
           <p className="eyebrow">{copy.aboutPage.eyebrow}</p>
           <h1 id="about-page-title">{copy.aboutPage.title}</h1>

@@ -9,7 +9,6 @@ export function PlansPage() {
   return (
     <div className="inner-page plans-page">
       <section className="inner-hero inner-hero--plans" aria-labelledby="plans-page-title">
-        <div className="inner-hero__orb" aria-hidden="true" />
         <div className="shell inner-hero__content">
           <p className="eyebrow">{copy.plansPage.eyebrow}</p>
           <h1 id="plans-page-title">{copy.plansPage.title}</h1>

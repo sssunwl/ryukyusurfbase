@@ -14,7 +14,6 @@ export function HomePage() {
     <>
       <section className="hero" aria-labelledby="hero-title">
         <WaveCanvas />
-        <div className="hero-glow" aria-hidden="true" />
         <div className="shell hero-content">
           <ZoneMarker {...copy.markers.hero} />
           <p className="eyebrow">{copy.hero.eyebrow}</p>
@@ -22,7 +21,7 @@ export function HomePage() {
           <p className="hero-copy">{copy.hero.body}</p>
           <div className="button-row">
             <a className="button button--primary" href={instagramUrl} target="_blank" rel="noreferrer">{copy.hero.primary}<ArrowIcon /></a>
-            <Link className="button button--ghost" to="/plans">{copy.hero.secondary}</Link>
+            <Link className="text-link" to="/plans">{copy.hero.secondary}<ArrowIcon /></Link>
           </div>
         </div>
         <a className="scroll-cue" href="#plans-preview"><span>{copy.hero.scroll}</span><i aria-hidden="true" /></a>
