@@ -70,10 +70,7 @@ button { font: inherit; }
 }
 .header-inner { min-height: 4.75rem; display: flex; align-items: center; justify-content: space-between; }
 .brand { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: .75rem; }
-.brand-mark {
-  display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border: 1px solid rgba(81,210,189,.65);
-  border-radius: 50%; color: var(--reef); font-size: var(--t-label); font-weight: 800;
-}
+.brand-mark { width: 2.35rem; height: 2.35rem; display: block; object-fit: contain; }
 .brand strong, .brand small { display: block; }
 .brand strong { font-size: var(--t-small); letter-spacing: .06em; }
 .brand small { margin-top: .12rem; color: rgba(243,240,232,.62); font-size: var(--t-micro); letter-spacing: .19em; }

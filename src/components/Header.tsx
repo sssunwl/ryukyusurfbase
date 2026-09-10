@@ -13,7 +13,7 @@ export function Header() {
     <header className="site-header">
       <div className="shell header-inner">
         <Link className="brand" to="/" aria-label={copy.common.home}>
-          <span className="brand-mark" aria-hidden="true">R</span>
+          <img className="brand-mark" src={`${import.meta.env.BASE_URL}logo.png`} alt="" width="38" height="38" />
           <span><strong>{copy.common.brand}</strong><small>{copy.common.brandEn}</small></span>
         </Link>
 
