@@ -8,3 +8,7 @@ dist/
 # 內部素材：IG 抓取內容、教練提供的原始照片，版權屬 Kaito，repo 為 public 絕不可上傳
 _scraped/
 _assets_raw/
+dist-preview/
+
+# 本機 Claude Code 設定，不進 public repo
+.claude/

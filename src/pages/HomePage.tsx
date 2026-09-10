@@ -1,0 +1,144 @@
+import { Link } from 'react-router-dom'
+import { MotionSection } from '../components/MotionSection'
+import { WaveCanvas } from '../components/WaveCanvas'
+import { WaveDivider } from '../components/WaveDivider'
+import { useLanguage } from '../i18n/LanguageContext'
+
+const instagramUrl = 'https://www.instagram.com/ryukyusurfbase/'
+
+export function HomePage() {
+  const { copy } = useLanguage()
+
+  return (
+    <>
+      <section className="hero" aria-labelledby="hero-title">
+        <WaveCanvas />
+        <div className="hero-glow" aria-hidden="true" />
+        <div className="shell hero-content">
+          <p className="eyebrow">{copy.hero.eyebrow}</p>
+          <h1 id="hero-title">{copy.hero.title}</h1>
+          <p className="hero-copy">{copy.hero.body}</p>
+          <div className="button-row">
+            <a className="button button--primary" href={instagramUrl} target="_blank" rel="noreferrer">{copy.hero.primary}<ArrowIcon /></a>
+            <Link className="button button--ghost" to="/plans">{copy.hero.secondary}</Link>
+          </div>
+        </div>
+        <a className="scroll-cue" href="#plans-preview"><span>{copy.hero.scroll}</span><i aria-hidden="true" /></a>
+      </section>
+
+      <MotionSection id="plans-preview" className="section section--foam plans-preview" aria-labelledby="plans-title">
+        <div className="shell">
+          <div className="section-heading section-heading--dark">
+            <p className="eyebrow">{copy.plansSection.eyebrow}</p>
+            <h2 id="plans-title">{copy.plansSection.title}</h2>
+            <p>{copy.plansSection.body}</p>
+          </div>
+          <div className="plan-grid">
+            {copy.plansSection.items.map((plan, index) => (
+              <article className="plan-card" key={plan.englishName}>
+                <span className="plan-card__number">0{index + 1}</span>
+                <p className="plan-card__english">{plan.englishName}</p>
+                <h3>{plan.name}</h3>
+                <p className="plan-card__audience">{plan.forWhom}</p>
+                <p>{plan.description}</p>
+                <dl>
+                  <div><dt>{copy.plansSection.duration}</dt><dd>TBD</dd></div>
+                  <div><dt>{copy.plansSection.price}</dt><dd>TBD</dd></div>
+                  <div><dt>{copy.plansSection.included}</dt><dd>{plan.includes}</dd></div>
+                </dl>
+              </article>
+            ))}
+          </div>
+          <div className="center-action"><Link className="text-link text-link--dark" to="/plans">{copy.common.viewPlans}<ArrowIcon /></Link></div>
+        </div>
+      </MotionSection>
+
+      <WaveDivider />
+
+      <MotionSection className="section why-section" aria-labelledby="why-title">
+        <div className="shell why-layout">
+          <div className="section-heading section-heading--sticky">
+            <p className="eyebrow">{copy.why.eyebrow}</p>
+            <h2 id="why-title">{copy.why.title}</h2>
+            <div className="tide-mark" aria-hidden="true"><span /><span /><span /></div>
+          </div>
+          <ol className="reason-list">
+            {copy.why.items.map((item, index) => (
+              <li key={item.title}>
+                <span>0{index + 1}</span>
+                <div><h3>{item.title}</h3><p>{item.body}</p></div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </MotionSection>
+
+      <MotionSection className="section day-section" aria-labelledby="day-title">
+        <div className="shell">
+          <div className="section-heading section-heading--day">
+            <p className="eyebrow">{copy.day.eyebrow}</p>
+            <h2 id="day-title">{copy.day.title}</h2>
+            <p>{copy.day.body}</p>
+          </div>
+          <ol className="day-timeline">
+            {copy.day.steps.map((step) => (
+              <li key={step.number}>
+                <span className="day-timeline__number">{step.number}</span>
+                <div><h3>{step.title}</h3><p>{step.body}</p></div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </MotionSection>
+
+      <WaveDivider flip />
+
+      <MotionSection className="section section--foam coach-section" aria-labelledby="coach-title">
+        <div className="shell coach-layout">
+          <div className="photo-placeholder photo-placeholder--portrait" data-placeholder="coach-photo" role="img" aria-label={copy.coach.placeholder}>
+            <span>KAITO</span><small>{copy.coach.placeholder}</small>
+          </div>
+          <div className="coach-copy">
+            <p className="eyebrow">{copy.coach.eyebrow}</p>
+            <h2 id="coach-title">{copy.coach.title}</h2>
+            <p>{copy.coach.intro}</p>
+            <Link className="text-link text-link--dark" to="/about">{copy.coach.link}<ArrowIcon /></Link>
+          </div>
+        </div>
+      </MotionSection>
+
+      <MotionSection className="section faq-section" aria-labelledby="faq-title">
+        <div className="shell faq-layout">
+          <div className="section-heading">
+            <p className="eyebrow">{copy.faq.eyebrow}</p>
+            <h2 id="faq-title">{copy.faq.title}</h2>
+          </div>
+          <div className="faq-list">
+            {copy.faq.items.map((item, index) => (
+              <details key={item.question}>
+                <summary><span>0{index + 1}</span>{item.question}<i aria-hidden="true" /></summary>
+                <p>{item.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </MotionSection>
+
+      <MotionSection className="booking-section" aria-labelledby="booking-title">
+        <div className="booking-line booking-line--one" aria-hidden="true" />
+        <div className="booking-line booking-line--two" aria-hidden="true" />
+        <div className="shell booking-content">
+          <p className="eyebrow">{copy.booking.eyebrow}</p>
+          <h2 id="booking-title">{copy.booking.title}</h2>
+          <p>{copy.booking.body}</p>
+          <a className="button button--light" href={instagramUrl} target="_blank" rel="noreferrer">{copy.booking.button}<ArrowIcon /></a>
+          <small>{copy.booking.note}</small>
+        </div>
+      </MotionSection>
+    </>
+  )
+}
+
+function ArrowIcon() {
+  return <svg className="arrow-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" /></svg>
+}
