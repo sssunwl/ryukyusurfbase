@@ -1,6 +1,15 @@
 import type { Copy } from './types'
 
 export const zhTW: Copy = {
+  markers: {
+    hero: { n: '00', en: 'OUTSIDE', label: '海面外' },
+    plans: { n: '01', en: 'PADDLE OUT', label: '划出去' },
+    why: { n: '02', en: 'CHECK', label: '看浪' },
+    day: { n: '03', en: 'LINE UP', label: '等浪' },
+    coach: { n: '04', en: 'TAKE OFF', label: '起乘' },
+    faq: { n: '05', en: 'INSIDE', label: '靠岸' },
+    booking: { n: '06', en: 'KICK OUT', label: '上岸' },
+  },
   meta: {
     title: '琉球衝浪基地 Ryukyu Surf Base',
     description: '沖繩衝浪體驗、衝浪導覽與多日 Surf Trip。依當日浪況找合適的浪點，提供繁體中文與日文服務。',

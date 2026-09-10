@@ -1,6 +1,15 @@
 import type { Copy } from './types'
 
 export const jaJP: Copy = {
+  markers: {
+    hero: { n: '00', en: 'OUTSIDE', label: '沖' },
+    plans: { n: '01', en: 'PADDLE OUT', label: 'パドルアウト' },
+    why: { n: '02', en: 'CHECK', label: '波を読む' },
+    day: { n: '03', en: 'LINE UP', label: 'ラインナップ' },
+    coach: { n: '04', en: 'TAKE OFF', label: 'テイクオフ' },
+    faq: { n: '05', en: 'INSIDE', label: 'インサイド' },
+    booking: { n: '06', en: 'KICK OUT', label: '上がる' },
+  },
   meta: {
     title: '琉球サーフベース Ryukyu Surf Base',
     description: '沖縄でのサーフィン体験、サーフガイド、複数日の Surf Trip。当日の波に合わせてポイントを選び、中国語と日本語でご案内します。',

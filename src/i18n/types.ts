@@ -9,6 +9,11 @@ export type Plan = {
 }
 
 export type Copy = {
+  /* 貫穿首頁的敘事骨架：往下滾＝完整衝一道浪。術語取自 Kaito 自己的 IG 用語。 */
+  markers: Record<
+    'hero' | 'plans' | 'why' | 'day' | 'coach' | 'faq' | 'booking',
+    { n: string; en: string; label: string }
+  >;
   meta: { title: string; description: string }
   common: {
     brand: string

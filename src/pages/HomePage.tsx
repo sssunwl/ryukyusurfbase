@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { MotionSection } from '../components/MotionSection'
+import { ZoneMarker } from '../components/ZoneMarker'
 import { WaveCanvas } from '../components/WaveCanvas'
 import { WaveDivider } from '../components/WaveDivider'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -15,6 +16,7 @@ export function HomePage() {
         <WaveCanvas />
         <div className="hero-glow" aria-hidden="true" />
         <div className="shell hero-content">
+          <ZoneMarker {...copy.markers.hero} />
           <p className="eyebrow">{copy.hero.eyebrow}</p>
           <h1 id="hero-title">{copy.hero.title}</h1>
           <p className="hero-copy">{copy.hero.body}</p>
@@ -27,6 +29,7 @@ export function HomePage() {
       </section>
 
       <MotionSection id="plans-preview" className="section section--foam plans-preview" aria-labelledby="plans-title">
+        <div className="shell"><ZoneMarker {...copy.markers.plans} tone="dark" /></div>
         <div className="shell">
           <div className="section-heading section-heading--dark">
             <p className="eyebrow">{copy.plansSection.eyebrow}</p>
@@ -56,6 +59,7 @@ export function HomePage() {
       <WaveDivider />
 
       <MotionSection className="section why-section" aria-labelledby="why-title">
+        <div className="shell"><ZoneMarker {...copy.markers.why} /></div>
         <div className="shell why-layout">
           <div className="section-heading section-heading--sticky">
             <p className="eyebrow">{copy.why.eyebrow}</p>
@@ -74,6 +78,7 @@ export function HomePage() {
       </MotionSection>
 
       <MotionSection className="section day-section" aria-labelledby="day-title">
+        <div className="shell"><ZoneMarker {...copy.markers.day} /></div>
         <div className="shell">
           <div className="section-heading section-heading--day">
             <p className="eyebrow">{copy.day.eyebrow}</p>
@@ -94,6 +99,7 @@ export function HomePage() {
       <WaveDivider flip />
 
       <MotionSection className="section section--foam coach-section" aria-labelledby="coach-title">
+        <div className="shell"><ZoneMarker {...copy.markers.coach} tone="dark" /></div>
         <div className="shell coach-layout">
           <div className="photo-placeholder photo-placeholder--portrait" data-placeholder="coach-photo" role="img" aria-label={copy.coach.placeholder}>
             <span>KAITO</span><small>{copy.coach.placeholder}</small>
@@ -108,6 +114,7 @@ export function HomePage() {
       </MotionSection>
 
       <MotionSection className="section faq-section" aria-labelledby="faq-title">
+        <div className="shell"><ZoneMarker {...copy.markers.faq} /></div>
         <div className="shell faq-layout">
           <div className="section-heading">
             <p className="eyebrow">{copy.faq.eyebrow}</p>
@@ -125,6 +132,7 @@ export function HomePage() {
       </MotionSection>
 
       <MotionSection className="booking-section" aria-labelledby="booking-title">
+        <div className="shell"><ZoneMarker {...copy.markers.booking} tone="dark" /></div>
         <div className="booking-line booking-line--one" aria-hidden="true" />
         <div className="booking-line booking-line--two" aria-hidden="true" />
         <div className="shell booking-content">
