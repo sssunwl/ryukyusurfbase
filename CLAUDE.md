@@ -20,6 +20,9 @@
 
 8. **憂鬱症那段只准出現在 `/about`**。首頁「關於教練」區只放一到兩句引子（不得提及憂鬱症字眼），hero、SEO description、og:description、方案卡、FAQ 一律不得使用這段經歷做賣點。SS 已與客戶確認此為定案。
 
+9. **設計禁區**（2026-09-10 改造後定案，不得回退）：字級一律用 `src/styles.css` 的 `--t-*` token，不准在元件裡寫死數值；不用 Inter；不用「三張並排卡片」的功能區；不用淡網格底、發光圓球、裝飾性圓圈這類 SaaS 模板裝飾；hero 只有一顆主按鈕，第二動作用文字連結。首頁七個區塊掛在 `ZoneMarker` 的衝浪流程軸上（00 OUTSIDE ~ 06 KICK OUT），新增區塊要一併給編號。
+10. **中文標題排版**：`line-height` 不得低於 1.05、`letter-spacing` 不得低於 -0.01em。緊行距與負字距是拉丁字母的技巧，套到方塊字會讓字黏在一起並溢出容器（已實際踩過）。
+
 ## 技術棧（已定案，不得更換）
 - 前端 Vite + React + TS + Tailwind + Motion
 - 後端 Cloudflare Workers + D1
