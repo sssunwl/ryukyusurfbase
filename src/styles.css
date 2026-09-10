@@ -42,7 +42,10 @@ button { font: inherit; }
 }
 
 .shell { width: min(100% - 2rem, 62.5rem); margin-inline: auto; }
-.app-shell { min-height: 100vh; overflow: clip; }
+.app-shell { min-height: 100vh; overflow-x: clip; }
+/* 只 clip 水平方向。整體 `overflow: clip` 會建立 clipping context，
+   讓 IntersectionObserver 把內部元素全判為不相交，whileInView 永遠不觸發，
+   結果整頁內容卡在 opacity:0（2026-09-10 實際踩過，方案頁全空白）。 */
 .eyebrow {
   margin: 0 0 1rem; color: var(--reef); font-size: var(--t-label); font-weight: 800; line-height: 1.4;
   letter-spacing: .24em; text-transform: uppercase;
