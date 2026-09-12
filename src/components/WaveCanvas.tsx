@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 
-const COLORS = ['rgba(81, 210, 189, 0.22)', 'rgba(178, 233, 221, 0.13)', 'rgba(243, 240, 232, 0.08)']
+// 淺色底：由後往前越來越飽和，最前面那層是淺灘的青綠。
+const COLORS = ['rgba(44, 197, 180, 0.14)', 'rgba(44, 197, 180, 0.22)', 'rgba(22, 176, 170, 0.28)']
 
 export function WaveCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -32,7 +33,7 @@ export function WaveCanvas() {
       const elapsed = motionQuery.matches ? 0 : time * 0.00018
 
       for (let layer = 0; layer < layerCount; layer += 1) {
-        const baseline = height * (0.56 + layer * 0.105)
+        const baseline = height * (0.62 + layer * 0.1)
         const amplitude = 10 + layer * 5
         const frequency = 0.008 - layer * 0.0012
         const speed = elapsed * (layer % 2 === 0 ? 1 : -0.72)

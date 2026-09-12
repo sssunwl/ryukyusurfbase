@@ -4,14 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        abyss: '#07171c',
-        deep: '#0b2730',
-        reef: '#51d2bd',
-        foam: '#f3f0e8',
-        sand: '#d9cfbd',
+        sand: '#fff8ec',
+        foam: '#ffffff',
+        shore: '#e6f6f2',
+        lagoon: '#2cc5b4',
+        coral: '#ff7657',
+        ink: '#12394a',
+        deep: '#0e3446',
       },
       fontFamily: {
-        sans: ['Inter', '"Noto Sans TC"', '"Noto Sans JP"', 'system-ui', 'sans-serif'],
+        sans: ['"PingFang TC"', '"Hiragino Sans"', '"Noto Sans TC"', '"Noto Sans JP"', 'system-ui', 'sans-serif'],
       },
     },
   },

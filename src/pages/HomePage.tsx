@@ -24,6 +24,7 @@ export function HomePage() {
             <Link className="text-link" to="/plans">{copy.hero.secondary}<ArrowIcon /></Link>
           </div>
         </div>
+        <WaveDivider className="wave-divider--shore" />
         <a className="scroll-cue" href="#plans-preview"><span>{copy.hero.scroll}</span><i aria-hidden="true" /></a>
       </section>
 
