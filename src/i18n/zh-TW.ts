@@ -16,7 +16,7 @@ export const zhTW: Copy = {
   },
   common: {
     brand: '琉球衝浪基地', brandEn: 'RYUKYU SURF BASE', home: '首頁', about: '關於教練', plans: '方案',
-    surfReport: '衝浪情報', surfGuide: '怎麼看浪', surfPoints: '沖繩浪點', language: '語言',
+    surfReport: '衝浪情報', surfGuide: '怎麼看浪', surfPoints: '沖繩四面海岸', language: '語言',
     openMenu: '開啟選單', closeMenu: '關閉選單', learnMore: '了解更多', viewPlans: '查看方案', contactInstagram: 'Instagram 私訊', pending: 'TBD',
   },
   hero: {
@@ -93,7 +93,7 @@ export const zhTW: Copy = {
   day: {
     eyebrow: '跟著浪的一天', title: '一天長什麼樣', body: '海況每天不同，所以順序清楚，時間與浪點保留彈性。',
     steps: [
-      { number: '01', title: '飯店接送', body: '會合後，一起往今天可能合適的海岸前進。' },
+      { number: '01', title: '集合', body: '預約確認後，我會依滿潮時間通知集合時間。會合後，一起往今天可能合適的海岸前進。' },
       { number: '02', title: '看點（spot check）', body: '先看浪、風向與現場狀況，再決定在哪裡下水。' },
       { number: '03', title: '下水', body: '依你的程度與當天浪況進行衝浪體驗或導覽。' },
       { number: '04', title: '咖啡廳', body: '下水後，到咖啡廳休息、聊聊今天的浪。' },

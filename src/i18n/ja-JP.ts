@@ -16,7 +16,7 @@ export const jaJP: Copy = {
   },
   common: {
     brand: '琉球サーフベース', brandEn: 'RYUKYU SURF BASE', home: 'ホーム', about: 'カイトについて', plans: 'プラン',
-    surfReport: 'サーフ情報', surfGuide: '波の読み方', surfPoints: '沖縄サーフポイント', language: '言語',
+    surfReport: 'サーフ情報', surfGuide: '波の読み方', surfPoints: '沖縄の4つの海岸', language: '言語',
     openMenu: 'メニューを開く', closeMenu: 'メニューを閉じる', learnMore: '詳しく見る', viewPlans: 'プランを見る', contactInstagram: 'Instagram DM', pending: 'TBD',
   },
   hero: {
@@ -92,7 +92,7 @@ export const jaJP: Copy = {
   day: {
     eyebrow: '波と過ごす一日', title: '一日の流れ', body: '海は毎日変わるので、流れはシンプルに、時間とポイントは柔軟に考えます。',
     steps: [
-      { number: '01', title: 'ホテルへお迎え', body: '合流後、その日に良さそうな海岸へ一緒に向かいます。' },
+      { number: '01', title: '集合', body: '予約確定後、満潮時間に合わせて集合時間をご案内します。合流後、その日に良さそうな海岸へ一緒に向かいます。' },
       { number: '02', title: 'ポイントチェック', body: '波、風向き、現地の様子を見て、入る場所を決めます。' },
       { number: '03', title: 'サーフィン', body: 'レベルと当日の波に合わせて、体験またはガイドを行います。' },
       { number: '04', title: 'カフェ', body: '海から上がったら、カフェで休みながら今日の波を振り返ります。' },

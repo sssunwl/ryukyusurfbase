@@ -28,7 +28,7 @@ npm run preview
 - **品牌 Logo**：已於 2026-09-10 換上 Kaito 的正式 logo（`public/logo.png`）。若之後拿到 SVG 原檔，可以再換上以提高清晰度。
 - 正式照片：Hero 橫幅、首頁教練照、`/about` 教練照；請提供原檔後輸出 WebP 與三段響應式尺寸。現階段全部使用標有 `data-placeholder` 的 CSS 漸層。
 - 方案：衝浪體驗、衝浪導覽的價格與內容已於 2026-09-12 補上；Surf Trip 仍是 `TBD`。
-- 接送範圍、營業季節、取消費用金額：待 Kaito 確認。取消政策、參加須知、在地規則已補上；Facebook 與 Threads 連結已於 2026-09-10 補上。完整清單見 `docs/QUESTIONS.md`。
+- 營業季節、取消費用金額：待 Kaito 確認（沒有接送，2026-09-12 已確認）。取消政策、參加須知、在地規則已補上；Facebook 與 Threads 連結已於 2026-09-10 補上。完整清單見 `docs/QUESTIONS.md`。
 
 海浪聲預設靜音，不會自動播放；使用者開啟後會淡入，頁面切到背景時暫停。語言與音效偏好會保存在瀏覽器的 localStorage。所有動效在 `prefers-reduced-motion: reduce` 下停止。
 

@@ -78,9 +78,9 @@ export type SurfCopy = {
     facesLabel: string
     swellLabel: string
     offshoreLabel: string
-    pending: string
+    /** 依 Kaito 的在地規則，網站不公開具體浪點（2026-09-12 SS 定案） */
+    localNote: string
     note: string
-    fields: Record<'area' | 'type' | 'swell' | 'offshore' | 'tide' | 'level' | 'hazards' | 'etiquette', string>
     coasts: CoastInfo[]
     toReport: string
   }
@@ -134,7 +134,7 @@ export const surfCopy: Record<Language, SurfCopy> = {
       ],
       disclaimer: '本頁只轉載數據與官方預報，不對任何時段或浪點做判斷。海況變化很快，下水前請再確認現場狀況、官方警報與自己的程度。',
       toGuide: '怎麼看浪',
-      toPoints: '沖繩浪點',
+      toPoints: '沖繩四面海岸',
     },
     guide: {
       eyebrow: '怎麼看浪',
@@ -151,7 +151,7 @@ export const surfCopy: Record<Language, SurfCopy> = {
         { id: 'period', title: '週期（period）', look: '湧浪週期（秒），也就是兩道浪之間隔多久。', meaning: '一般來說，週期越長，浪帶的能量越多、排列越整齊；週期短的多半是附近的風吹出來的風浪（wind swell），比較亂。', myth: '「週期長就一定是大浪」——湧浪本身小，週期再長浪也不會大。' },
         { id: 'wind-direction', title: '風向（wind direction）', look: '風從哪個方向吹來。', meaning: '風從陸地吹向海（離岸風，offshore）時，浪面比較乾淨；從海吹向陸地（向岸風，onshore）時，浪面容易被吹亂。同一個風向，對西岸和東岸的效果剛好相反。', myth: '「今天風很小所以沒差」——風向決定浪面的樣子，風速決定影響有多大，兩個都要看。' },
         { id: 'wind-speed', title: '風速與陣風（gust）', look: '平均風速與陣風。', meaning: '平均風速不大、陣風卻很強的時候，海面會一陣一陣變亂，划水（paddling）也比較吃力。', myth: '「平均風速低就放心」——突然的變化通常來自陣風。' },
-        { id: 'spot', title: '浪點朝向與地形', look: '浪點面向哪個方向、是礁盤（reef）還是沙灘（beach break）。', meaning: '把湧浪方向、風向、潮位套到浪點的朝向與地形上，才看得出那一天那個浪點大概是什麼樣子。各海岸的特性請看「沖繩浪點」。', myth: '「海很漂亮很平靜」不代表有浪；「有浪」也不代表每個人都能應付。' },
+        { id: 'spot', title: '浪點朝向與地形', look: '浪點面向哪個方向、是礁盤（reef）還是沙灘（beach break）。', meaning: '把湧浪方向、風向、潮位套到浪點的朝向與地形上，才看得出那一天那個浪點大概是什麼樣子。各海岸的通則請看「沖繩四面海岸」。', myth: '「海很漂亮很平靜」不代表有浪；「有浪」也不代表每個人都能應付。' },
         { id: 'level', title: '自己的程度', look: '自己的經驗、體力與裝備。', meaning: '同樣的浪，對有經驗的人剛好，對第一次衝浪的人可能太大太快。不確定的時候，請和熟悉當地海況的教練一起下水。', myth: '「別人都下水了，我應該也可以」——每個人能應付的浪不一樣。' },
       ],
       coastsTitle: '沖繩本島的四面海岸',
@@ -163,15 +163,14 @@ export const surfCopy: Record<Language, SurfCopy> = {
       toReport: '看這一週的數據',
     },
     points: {
-      eyebrow: '沖繩浪點',
+      eyebrow: '沖繩四面海岸',
       title: '沖繩本島的四面海岸',
-      lead: '每個浪點的朝向、地形和潮位特性都不同。這頁整理各海岸的通則與浪點介紹；當天的數據請到「衝浪情報」自己對照。',
+      lead: '沖繩本島四面環海，每一面海岸收到的湧浪和離岸風方向都不同。這頁整理各海岸的通則；當天的數據請到「衝浪情報」自己對照。',
       facesLabel: '面向',
       swellLabel: '收到的湧浪（swell）',
       offshoreLabel: '離岸風（offshore）',
-      pending: '浪點資料整理中，會由 Kaito 確認後補上。',
-      note: '浪點介紹不會跟當天數據連動，請自己對照判讀。',
-      fields: { area: '區域', type: '類型', swell: '湧浪方向（swell）', offshore: '離岸風（offshore）', tide: '潮位', level: '程度', hazards: '危險', etiquette: '在地禮儀' },
+      localNote: '依照在地規則，網站不公開具體浪點。參加衝浪導覽時，教練會依當天浪況帶你前往。',
+      note: '海岸通則不會跟當天數據連動，請自己對照判讀。',
       coasts: [
         { id: 'west', name: '西岸', faces: '東海（東シナ海）', swell: '從西邊來的湧浪', offshore: '東風' },
         { id: 'east', name: '東岸', faces: '太平洋', swell: '從東邊來的湧浪', offshore: '西風' },
@@ -228,7 +227,7 @@ export const surfCopy: Record<Language, SurfCopy> = {
       ],
       disclaimer: 'このページはデータと公式予報の転載のみで、時間帯やポイントについての判断は行いません。海況は急に変わります。海に入る前に、現地の様子、公式の警報、ご自身のレベルを必ず確認してください。',
       toGuide: '波の読み方',
-      toPoints: '沖縄サーフポイント',
+      toPoints: '沖縄の4つの海岸',
     },
     guide: {
       eyebrow: '波の読み方',
@@ -245,7 +244,7 @@ export const surfCopy: Record<Language, SurfCopy> = {
         { id: 'period', title: '周期', look: 'うねりの周期（秒）、つまり波と波の間隔。', meaning: '一般に、周期が長いほど波のエネルギーが大きく、きれいにそろいます。周期が短いものは近くの風で立った風波であることが多く、乱れがちです。', myth: '「周期が長ければ必ず大きい」——うねり自体が小さければ、周期が長くても波は大きくなりません。' },
         { id: 'wind-direction', title: '風向き', look: '風がどの方向から吹いているか。', meaning: '陸から海へ吹く風（オフショア）のときは波の面がきれいに、海から陸へ吹く風（オンショア）のときは乱れやすくなります。同じ風向きでも、西海岸と東海岸では効果が逆になります。', myth: '「風が弱いから関係ない」——風向きが波の面を、風速がその影響の大きさを決めます。両方を見ましょう。' },
         { id: 'wind-speed', title: '風速と突風', look: '平均風速と突風。', meaning: '平均風速が弱くても突風が強いと、海面がときどき乱れ、パドルもきつくなります。', myth: '「平均風速が低いから安心」——急な変化はたいてい突風から来ます。' },
-        { id: 'spot', title: 'ポイントの向きと地形', look: 'ポイントがどちらを向いているか、リーフか砂浜か。', meaning: 'うねりの向き、風向き、潮位をポイントの向きと地形に当てはめると、その日のそのポイントの様子が見えてきます。海岸ごとの特徴は「沖縄サーフポイント」をご覧ください。', myth: '「海がきれいで穏やか」でも波があるとは限らず、「波がある」からといって誰でも入れるとは限りません。' },
+        { id: 'spot', title: 'ポイントの向きと地形', look: 'ポイントがどちらを向いているか、リーフか砂浜か。', meaning: 'うねりの向き、風向き、潮位をポイントの向きと地形に当てはめると、その日のそのポイントの様子が見えてきます。海岸ごとの特徴は「沖縄の4つの海岸」をご覧ください。', myth: '「海がきれいで穏やか」でも波があるとは限らず、「波がある」からといって誰でも入れるとは限りません。' },
         { id: 'level', title: '自分のレベル', look: '経験、体力、道具。', meaning: '同じ波でも、経験者にはちょうどよく、初めての人には大きく速すぎることがあります。迷ったら、地元の海をよく知るコーチと一緒に入りましょう。', myth: '「みんな入っているから自分も大丈夫」——対応できる波は人それぞれです。' },
       ],
       coastsTitle: '沖縄本島の4つの海岸',
@@ -257,15 +256,14 @@ export const surfCopy: Record<Language, SurfCopy> = {
       toReport: '今週のデータを見る',
     },
     points: {
-      eyebrow: '沖縄サーフポイント',
+      eyebrow: '沖縄の4つの海岸',
       title: '沖縄本島の4つの海岸',
-      lead: 'ポイントごとに向き、地形、潮位の特徴は違います。このページでは海岸ごとの一般的な特徴とポイントを紹介します。当日のデータは「サーフ情報」でご自身で照らし合わせてください。',
+      lead: '沖縄本島は四方を海に囲まれ、海岸ごとに届くうねりやオフショアの向きが違います。このページでは海岸ごとの一般的な特徴をまとめています。当日のデータは「サーフ情報」でご自身で照らし合わせてください。',
       facesLabel: '向き',
       swellLabel: '届くうねり',
       offshoreLabel: 'オフショア',
-      pending: 'ポイント情報は準備中です。カイトの確認後に掲載します。',
-      note: 'ポイント紹介は当日のデータとは連動していません。ご自身で照らし合わせてください。',
-      fields: { area: 'エリア', type: 'タイプ', swell: 'うねりの向き', offshore: 'オフショア', tide: '潮位', level: 'レベル', hazards: '危険', etiquette: 'ローカルルール' },
+      localNote: 'ローカルルールに基づき、具体的なサーフポイントはサイトに掲載していません。サーフガイドでは、当日の波に合わせてインストラクターがご案内します。',
+      note: '海岸ごとの特徴は当日のデータとは連動していません。ご自身で照らし合わせてください。',
       coasts: [
         { id: 'west', name: '西海岸', faces: '東シナ海', swell: '西からのうねり', offshore: '東風' },
         { id: 'east', name: '東海岸', faces: '太平洋', swell: '東からのうねり', offshore: '西風' },
