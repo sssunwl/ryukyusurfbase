@@ -42,3 +42,12 @@ CREATE TABLE IF NOT EXISTS tg_posts (
   detail TEXT,
   PRIMARY KEY (kind, target_date)
 );
+
+-- 後台可編輯的網站內容（docs/ADMIN_SPEC.md）。key 對應前台 i18n 區塊，例如 plansSection、faq。
+CREATE TABLE IF NOT EXISTS content_docs (
+  key TEXT PRIMARY KEY,
+  zh_json TEXT,
+  ja_json TEXT,
+  updated_at TEXT NOT NULL,
+  updated_by TEXT
+);

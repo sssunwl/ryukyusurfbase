@@ -1,8 +1,8 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  /** 衝浪情報 API（Worker）的網址，例如 http://localhost:8787。沒設定時頁面顯示「尚未連線」。 */
-  readonly VITE_SURF_API_BASE?: string
+  /** API（Worker）的網址。正式站與本機開發留空（同網域／Vite proxy），GitHub Pages 預覽站帶入 workers.dev 網址。 */
+  readonly VITE_API_BASE?: string
 }
 
 interface ImportMeta {

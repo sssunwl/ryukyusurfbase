@@ -28,7 +28,7 @@ jobs:
         env:
           # 衝浪情報 API（Worker）網址，在 repo 的 Settings → Variables 設定。
           # 還沒設定時是空字串，衝浪情報頁會顯示「資料服務尚未連線」。
-          VITE_SURF_API_BASE: ${{ vars.SURF_API_BASE }}
+          VITE_API_BASE: ${{ vars.SURF_API_BASE }}
 
       # 這是給教練看的預覽站，不是正式站：擋搜尋引擎索引。
       # 正式站走 Cloudflare Pages + 自訂網域，不經過這個 workflow，所以不會帶到 noindex。

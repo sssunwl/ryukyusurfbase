@@ -1,5 +1,7 @@
 export interface Env {
   DB: D1Database
+  /** 前台頁面（Vite build 的 dist），由 Workers Static Assets 提供 */
+  ASSETS: Fetcher
   ALLOWED_ORIGINS: string
   SITE_URL: string
   TELEGRAM_CHANNEL_ID: string

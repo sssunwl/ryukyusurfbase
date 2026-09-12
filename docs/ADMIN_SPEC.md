@@ -1,6 +1,6 @@
 # 後台（CMS）規格草案 — Phase 3
 
-2026-09-13｜狀態：SS 已定方向，要拆期施工。本檔補充 SPEC §8，兩者衝突時以本檔為準。
+2026-09-13｜狀態：**A 期已完成**，正式站 ryukyusurfbase.sssuni.com 上線，`/api/content` 與前台套用機制都能運作；B 期等待開工。本檔補充 SPEC §8，兩者衝突時以本檔為準。
 
 ## SS 的決定（2026-09-12）
 
@@ -11,12 +11,12 @@
 
 ## 架構
 
-- **一個 Worker `ryukyusurfbase`**，負責：
+- **一個 Worker `ryukyusurfbase-api`**（沿用衝浪情報的 Worker，排程與 secrets 都在上面），負責：
   - Static Assets：前台（Vite build）
   - `/api/*`：公開 API（衝浪情報、網站內容）
   - `/admin`：後台畫面
   - `/admin/api/*`：後台 API
-- **跟 SPEC 技術棧的差異（需 SS 確認）**：前台原本定為 Cloudflare Pages，改用 Workers Static Assets。好處是網站、API、後台在同一個 Worker、同一個網域，不必處理跨網域，登入也單純。工作區裡的 songsong 已經用這個做法上線。
+- **跟 SPEC 技術棧的差異（2026-09-13 SS 已同意）**：前台原本定為 Cloudflare Pages，改用 Workers Static Assets。好處是網站、API、後台在同一個 Worker、同一個網域，不必處理跨網域，登入也單純。工作區裡的 songsong 已經用這個做法上線。
 - **登入**：用 Cloudflare Access 保護 `/admin` 與 `/admin/api`。登入方式用 One-time PIN（寄驗證碼到 email，不必另外設定 Google OAuth），也可以改用 Google；白名單只有 Kaito 和 SS。Worker 會再驗證一次 `Cf-Access-Jwt-Assertion`，當作第二道保險。**不自己寫登入頁、不做密碼欄位**（CLAUDE.md 技術棧）。
 - **資料**：內容存 D1，照片存 R2 bucket `ryukyusurfbase-media`。
 - **前台讀內容**：網站啟動時抓 `/api/content`。抓取失敗就用程式內建的預設文案，確保網站永遠不會空白。
@@ -60,7 +60,7 @@
 
 | 期 | 內容 | 需要 SS 手動 |
 |---|---|---|
-| **A** | 網域搬家：Worker＋Static Assets 上線到 `ryukyusurfbase.sssuni.com`；content API；前台改讀內容（有預設值）；衝浪情報改走同一個網域 | 確認技術棧改動 |
+| **A** | 網域搬家：Worker＋Static Assets 上線到 `ryukyusurfbase.sssuni.com`；content API；前台改讀內容（有預設值）；衝浪情報改走同一個網域 | —（技術棧改動已同意） |
 | **B** | 後台外框＋Access＋表單式編輯（方案、FAQ、公告、教練故事）＋版本還原 | 在 Zero Trust 建立 Access 應用、填白名單 email |
 | **C** | 照片（R2）＋自訂頁面與 Blog（區塊排版） | 建 R2 bucket，或重新 `wrangler login` 取得 R2 權限 |
 | **D** | 即時編輯（網頁上直接點字修改） | — |
@@ -68,7 +68,7 @@
 ## 待確認
 
 1. Kaito 登入後台要用哪個 email？
-2. 前台改用 Workers Static Assets（不用 Pages），可以嗎？
-3. Blog 要繁中＋日文雙語，還是 Kaito 想用哪個語言寫都可以？
+2. ~~前台改用 Workers Static Assets~~：2026-09-13 SS 同意。
+3. ~~Blog 語言~~：繁中＋日文雙語（2026-09-13 SS 決定）。
 4. 目前 wrangler 的 OAuth 權限沒有 R2。C 期開始前，要重新登入，或在 Cloudflare 後台先建好 bucket。
 5. GitHub Pages 預覽站什麼時候停用？建議 A 期上線、驗證沒問題之後。

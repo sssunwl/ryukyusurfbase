@@ -1,0 +1,4 @@
+# 正式網域 ryukyusurfbase.sssuni.com 在 Kaito 驗收前先不讓搜尋引擎收錄。
+# 要正式開放時，刪掉下面兩行並重新部署（cd worker && npm run deploy）。
+/*
+  X-Robots-Tag: noindex, nofollow

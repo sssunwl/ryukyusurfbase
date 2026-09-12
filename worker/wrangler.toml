@@ -1,8 +1,21 @@
-# 衝浪情報 API（SPEC §6.5）。
-# 部署、建立 D1、設定 secrets 都由 SS 手動處理，這個檔案不放任何憑證。
+# 琉球衝浪基地 Worker（docs/ADMIN_SPEC.md A 期，2026-09-13 起）：
+# 前台頁面（Static Assets）＋公開 API（衝浪情報、網站內容）＋之後的後台，都在這一個 Worker。
+# 名稱保留 ryukyusurfbase-api：排程與 secrets 都掛在這個 Worker 上，改名會變成另一個 Worker、排程重複跑。
+# 這個檔案不放任何憑證。
 name = "ryukyusurfbase-api"
 main = "src/index.ts"
 compatibility_date = "2026-09-01"
+# GitHub Pages 預覽站仍然透過 workers.dev 網址讀 API
+workers_dev = true
+
+routes = [{ pattern = "ryukyusurfbase.sssuni.com", custom_domain = true }]
+
+[assets]
+directory = "../dist"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+# 這些路徑一律先交給 Worker 程式；其他（頁面、圖片）直接由 Static Assets 回應
+run_worker_first = ["/api/*", "/admin/api/*", "/telegram/*"]
 
 [triggers]
 # 以 UTC 撰寫：
@@ -14,8 +27,8 @@ crons = ["10 20,2,8 * * *", "15 20 * * *", "15 2 * * *", "0 21 * * 1"]
 
 [vars]
 ALLOWED_ORIGINS = "https://sssunwl.github.io,https://ryukyusurfbase.sssuni.com"
-SITE_URL = "https://sssunwl.github.io/ryukyusurfbase"
-# 公開頻道的 chat id（例如 @ryukyusurf_channel 或 -100…），頻道建好後由 SS 填入
+SITE_URL = "https://ryukyusurfbase.sssuni.com"
+# 公開頻道的 chat id（例如 @ryukyusurf_channel 或 -100…），頻道建好後由 SS 提供
 TELEGRAM_CHANNEL_ID = ""
 # 只有 SS 能改成 "true"（SPEC §6.2：要等氣象廳確認＋Open-Meteo 商用方案）
 MODEL_LAYER_ENABLED = "false"

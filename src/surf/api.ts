@@ -1,20 +1,17 @@
 import { useEffect, useState } from 'react'
 import type { SurfReport, Tri } from '../../shared/surf'
 import type { Language } from '../i18n/types'
-
-const API_BASE = (import.meta.env.VITE_SURF_API_BASE ?? '').replace(/\/$/, '')
+import { API_BASE } from '../lib/apiBase'
 
 export type ReportState =
-  | { status: 'unconfigured' }
   | { status: 'loading' }
   | { status: 'error' }
   | { status: 'ready'; report: SurfReport }
 
 export function useSurfReport(): ReportState {
-  const [state, setState] = useState<ReportState>(API_BASE ? { status: 'loading' } : { status: 'unconfigured' })
+  const [state, setState] = useState<ReportState>({ status: 'loading' })
 
   useEffect(() => {
-    if (!API_BASE) return
     const controller = new AbortController()
     fetch(`${API_BASE}/api/surf-report?days=7`, { signal: controller.signal })
       .then((response) => {

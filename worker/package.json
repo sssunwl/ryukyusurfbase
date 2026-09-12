@@ -4,6 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "wrangler dev --test-scheduled",
+    "build:site": "npm --prefix .. run build",
+    "deploy": "npm run build:site && wrangler deploy",
     "db:init:local": "wrangler d1 execute ryukyusurfbase --local --file=schema.sql",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"

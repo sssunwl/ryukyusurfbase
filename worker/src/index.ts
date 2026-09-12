@@ -1,3 +1,4 @@
+import { listContent } from './content'
 import type { Env } from './env'
 import { refreshForecast, refreshTides, refreshWarnings } from './ingest'
 import { buildReport } from './report'
@@ -32,17 +33,24 @@ async function surfReport(request: Request, env: Env) {
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url)
+    const isWorkerPath = url.pathname.startsWith('/api/') || url.pathname.startsWith('/telegram/')
+    // 前台頁面與圖片由 Static Assets 直接回應；萬一走到這裡，也交回 Static Assets
+    if (!isWorkerPath) return env.ASSETS.fetch(request)
+
     if (request.method === 'OPTIONS') {
       return new Response(null, { headers: { ...corsHeaders(request, env), 'Access-Control-Allow-Methods': 'GET', 'Access-Control-Max-Age': '86400' } })
     }
     try {
       if (url.pathname === '/api/surf-report' && request.method === 'GET') return await surfReport(request, env)
+      if (url.pathname === '/api/content' && request.method === 'GET') {
+        return json(await listContent(env), 200, { ...corsHeaders(request, env), 'Cache-Control': 'public, max-age=60' })
+      }
       if (url.pathname === '/telegram/webhook' && request.method === 'POST') return await handleWebhook(request, env)
     } catch (error) {
       console.error(error)
       return json({ error: 'internal error' }, 500, corsHeaders(request, env))
     }
-    return new Response('not found', { status: 404 })
+    return json({ error: 'not found' }, 404, corsHeaders(request, env))
   },
 
   async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext) {

@@ -51,20 +51,14 @@ export function SurfReportPage() {
   )
 }
 
-function StatusPanel({ status, s }: { status: 'unconfigured' | 'loading' | 'error'; s: SurfCopy['report'] }) {
+function StatusPanel({ status, s }: { status: 'loading' | 'error'; s: SurfCopy['report'] }) {
   return (
     <div className="surf-status" role={status === 'loading' ? 'status' : undefined}>
       {status === 'loading' && <p>{s.loading}</p>}
       {status === 'error' && (
         <>
-          <p>{s.error}</p>
-          <button type="button" className="button button--dark" onClick={() => window.location.reload()}>{s.retry}</button>
-        </>
-      )}
-      {status === 'unconfigured' && (
-        <>
-          <p><strong>{s.unconfigured}</strong></p>
-          <p className="surf-note">{s.unconfiguredHint}</p>
+          <p><strong>{s.error}</strong></p>
+          <button type="button" className="button button--dark button--small" onClick={() => window.location.reload()}>{s.retry}</button>
           <div className="surf-links">
             <Link className="surf-chip" to="/surf-guide">{s.toGuide}</Link>
             <Link className="surf-chip" to="/surf-points">{s.toPoints}</Link>

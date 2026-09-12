@@ -10,7 +10,7 @@ Phase 1 靜態前台已完成，並部署到預覽站 https://sssunwl.github.io/
 
 **2026-09-12 SS 決定自建預約系統**：已先做前端示範，客人端 `/booking`、Kaito 端 `/booking/demo-admin`。資料只存在 localStorage，日期狀態是假資料，不放進主選單。正式預約仍用 Kaito 的 Google 表單，正式版規格見 SPEC §7。
 
-**2026-09-12 SS 定案後台範圍**：三種編輯方式（表單、區塊排版、網頁上直接點字修改）都做、也做 Blog，網址改為 `ryukyusurfbase.sssuni.com`。規格與 A–D 分期在 `docs/ADMIN_SPEC.md`，還沒施工。
+**2026-09-12 SS 定案後台範圍**：三種編輯方式（表單、區塊排版、網頁上直接點字修改）都做、也做 Blog，網址改為 `ryukyusurfbase.sssuni.com`。規格與 A–D 分期在 `docs/ADMIN_SPEC.md`。**A 期已完成（2026-09-13）**：正式站 https://ryukyusurfbase.sssuni.com 上線，前台與 API 放在同一個 Worker，目前加了 noindex；前台會讀 `/api/content` 套用後台內容。下一步是 B 期（後台登入＋表單式編輯），需要 Kaito 的登入 email，也需要 SS 在 Zero Trust 建立 Access 應用。
 
 目前在等的事：
 - **氣象廳**：確認模型數據層算不算預報業務。諮詢信草稿在 `docs/JMA_INQUIRY.md`，由 SS 或 Kaito 寄出
@@ -42,7 +42,7 @@ Phase 1 靜態前台已完成，並部署到預覽站 https://sssunwl.github.io/
 ## 技術棧（已定案，不得更換）
 - 前端 Vite + React + TS + Tailwind + Motion
 - 後端 Cloudflare Workers + D1（Worker 放在 `worker/`，排程用 Cron Triggers）
-- 部署 Cloudflare Pages（前台）/ Workers（API），先掛 `ryukyusurfbase.sssuni.com`
+- 部署：前台（Static Assets）、API、之後的後台都放在同一個 Worker `ryukyusurfbase-api`，網域 `ryukyusurfbase.sssuni.com`。2026-09-13 SS 同意，取代原本的 Cloudflare Pages。部署指令是 `cd worker && npm run deploy`。GitHub Pages 預覽站暫時保留
 - 後台 `/admin` 由 **Cloudflare Access** 保護，**不自己寫登入頁、不做密碼欄位**
 - Google Calendar 走 **Service Account**（freebusy 讀 + events 寫），**不做 OAuth 流程**
 - Telegram：bot `@Ryukyusurf_bot` 發到公開頻道（單向廣播）
