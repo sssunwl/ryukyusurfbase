@@ -9,7 +9,11 @@ import { PlansPage } from './pages/PlansPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
-  useEffect(() => window.scrollTo({ top: 0, behavior: 'instant' }), [pathname])
+  // 一定要用大括號：箭頭函式直接回傳 scrollTo() 的結果會被 React 當成 cleanup。
+  // 部分瀏覽器的 scrollTo 回傳 Promise → "destroy is not a function" → 整個 App 白屏。
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [pathname])
   return null
 }
 
