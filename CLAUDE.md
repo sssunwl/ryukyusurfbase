@@ -6,7 +6,7 @@
 
 Phase 1 靜態前台已完成，並部署到預覽站 https://sssunwl.github.io/ryukyusurfbase/ （push `main` 會自動部署，已設 noindex）。2026-09-11 SS 定案把整站改成**淺色海島風**，細節見 SPEC §5。正式站 Cloudflare Pages 尚未設定。
 
-**2026-09-12 SS 定案：Phase 1.5「衝浪情報＋三語」排在 Phase 2 之前做**，規格見 SPEC §6，派工單是 `docs/CODEX_FORECAST.md`。
+**2026-09-12 SS 定案：Phase 1.5「衝浪情報＋三語」排在 Phase 2 之前做**，規格見 SPEC §6。同一天因 Codex token 不足，改由 Claude 依 `docs/CODEX_FORECAST.md` 實作完成：三語、`worker/`（潮位表、氣象廳預報與警報、TG 推播、現場報告 webhook），以及三個衝浪頁面，在本機驗證過。Worker 還沒部署，上線步驟見 README。模型數據層目前只有開關和 Windy 連結，還沒實作。
 
 目前在等的事：
 - **氣象廳**：確認模型數據層算不算預報業務。諮詢信草稿在 `docs/JMA_INQUIRY.md`，由 SS 或 Kaito 寄出

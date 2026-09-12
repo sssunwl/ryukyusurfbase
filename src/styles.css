@@ -316,6 +316,101 @@ button { font: inherit; }
   .plan-page-action { flex-direction: row; justify-content: center; }
 }
 
+/* ---------- 三語語言切換、footer 連結 ---------- */
+.language-switch__item { display: inline-flex; align-items: center; gap: .5rem; }
+.footer-bottom__links { display: flex; flex-wrap: wrap; gap: .3rem 1rem; }
+
+/* ---------- 衝浪情報三頁（SPEC §6.3） ---------- */
+.surf-page .section--foam { padding-block: 3.5rem 5rem; }
+.surf-status { padding: 1.6rem; border: 1px solid var(--line); border-radius: 1.25rem; background: var(--foam); }
+.surf-status p { margin: 0 0 .8rem; line-height: 1.8; }
+.surf-tabs { margin: 1.6rem 0 1.4rem; padding-bottom: .4rem; display: flex; gap: .5rem; overflow-x: auto; scrollbar-width: thin; }
+.surf-tab { flex: 0 0 auto; min-width: 4.4rem; min-height: 3.25rem; padding: .55rem .8rem; border: 1px solid var(--line); border-radius: 1rem; color: var(--ink-soft); background: var(--foam); font-size: var(--t-small); font-weight: 750; line-height: 1.3; text-align: center; cursor: pointer; transition: background .2s ease, border-color .2s ease; }
+.surf-tab small { display: block; color: var(--ink-mute); font-size: var(--t-micro); font-weight: 600; }
+.surf-tab[aria-selected="true"] { color: var(--ink); background: var(--lagoon); border-color: var(--lagoon); }
+.surf-tab[aria-selected="true"] small { color: rgba(18,57,74,.74); }
+.surf-grid { display: grid; gap: 1.1rem; }
+.surf-block { padding: 1.4rem; border: 1px solid var(--line); border-radius: 1.25rem; background: var(--foam); min-width: 0; }
+.surf-block__head { margin-bottom: 1rem; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.surf-block__head .eyebrow { margin-bottom: .35rem; }
+.surf-block h2 { margin: 0; font-size: var(--t-h3); font-weight: 800; line-height: 1.3; }
+.surf-block__howto { flex: 0 0 auto; padding-top: .2rem; color: var(--lagoon-ink); font-size: var(--t-small); font-weight: 750; }
+.surf-warning { border-color: rgba(194,70,44,.35); background: #fff4ef; }
+.surf-note { margin: .8rem 0 0; color: var(--ink-mute); font-size: var(--t-small); line-height: 1.7; }
+.surf-kv { margin: 0; display: grid; }
+.surf-kv div { padding-block: .55rem; display: grid; grid-template-columns: 6.2rem minmax(0, 1fr); gap: .8rem; border-bottom: 1px solid rgba(18,57,74,.08); }
+.surf-kv dt { color: var(--ink-mute); font-size: var(--t-small); }
+.surf-kv dd { margin: 0; font-size: var(--t-body); font-weight: 650; line-height: 1.6; overflow-wrap: anywhere; }
+.surf-original { display: block; margin-top: .15rem; color: var(--ink-mute); font-size: var(--t-micro); font-weight: 500; line-height: 1.5; }
+.surf-area + .surf-area { margin-top: 1.2rem; }
+.surf-area h3 { margin: 0 0 .3rem; font-size: var(--t-body); font-weight: 800; }
+.surf-area p { margin: .3rem 0; }
+.surf-sun { display: flex; gap: 2.2rem; font-size: var(--t-h3); font-weight: 800; font-variant-numeric: tabular-nums; }
+.surf-sun p { margin: 0; }
+.surf-sun span { display: block; color: var(--ink-mute); font-size: var(--t-small); font-weight: 600; }
+.surf-links { margin-top: .9rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+.surf-chip { min-height: 2.75rem; padding: .55rem .9rem; display: inline-flex; align-items: center; border-radius: 999px; color: var(--ink); background: var(--shore); font-size: var(--t-small); font-weight: 700; }
+.surf-chip:hover { background: #d4f0ea; }
+.surf-field p { margin: 0 0 .5rem; line-height: 1.8; white-space: pre-line; }
+.surf-field time { color: var(--lagoon-ink); font-weight: 800; font-variant-numeric: tabular-nums; }
+.surf-sources { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: var(--t-small); line-height: 1.8; }
+.surf-sources h2 { margin: 0 0 .6rem; font-size: var(--t-body); }
+.surf-sources ul { margin: 0 0 .8rem; padding-left: 1.2rem; }
+.surf-sources p { margin: 0 0 .5rem; }
+.surf-page-actions { margin-top: 2.5rem; display: flex; justify-content: center; }
+.surf-draft { margin: 1rem 0 0; color: var(--ink-mute); font-size: var(--t-micro); text-align: center; }
+
+.tide-chart { width: 100%; height: auto; display: block; }
+.tide-chart__night { fill: rgba(18,57,74,.06); }
+.tide-chart__grid { stroke: rgba(18,57,74,.1); stroke-width: 1; }
+.tide-chart__axis { fill: var(--ink-mute); font-size: var(--t-micro); font-variant-numeric: tabular-nums; }
+.tide-chart__west { fill: none; stroke: var(--lagoon-ink); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.tide-chart__east { fill: none; stroke: var(--coral-ink); stroke-width: 2; stroke-dasharray: 6 5; stroke-linejoin: round; }
+.tide-legend { margin: .5rem 0 .9rem; display: flex; flex-wrap: wrap; gap: .3rem 1.2rem; color: var(--ink-soft); font-size: var(--t-small); }
+.tide-legend i { width: 1.5rem; height: 0; margin-right: .45rem; display: inline-block; vertical-align: middle; border-top: 2.5px solid var(--lagoon-ink); }
+.tide-legend i.is-east { border-top: 2px dashed var(--coral-ink); }
+.surf-table-wrap { overflow-x: auto; }
+.tide-table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: var(--t-small); font-variant-numeric: tabular-nums; }
+.tide-table th, .tide-table td { padding: .55rem .4rem; border-bottom: 1px solid rgba(18,57,74,.08); text-align: left; white-space: nowrap; }
+.tide-table th { color: var(--ink-mute); font-weight: 600; }
+
+.guide-steps { margin: 0; padding: 0; display: grid; gap: 1rem; list-style: none; }
+.guide-step { scroll-margin-top: 1.5rem; padding: 1.5rem; display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: .6rem; border: 1px solid var(--line); border-radius: 1.25rem; background: var(--foam); }
+.guide-step__n { padding-top: .35rem; color: var(--coral-ink); font-size: var(--t-label); font-weight: 800; letter-spacing: .1em; font-variant-numeric: tabular-nums; }
+.guide-step h2 { margin: 0 0 .7rem; font-size: var(--t-h3); line-height: 1.3; }
+.guide-step dl { margin: 0; display: grid; gap: .8rem; }
+.guide-step dt { color: var(--lagoon-ink); font-size: var(--t-label); font-weight: 800; letter-spacing: .06em; }
+.guide-step dd { margin: .2rem 0 0; color: var(--ink-soft); line-height: 1.85; }
+.guide-coasts { margin-top: 2.5rem; padding: 1.5rem; display: grid; gap: 1.5rem; align-items: center; border-radius: 1.25rem; background: var(--shore); }
+.guide-coasts h2, .guide-rest h2 { margin: 0 0 .7rem; font-size: var(--t-h3); line-height: 1.3; }
+.guide-coasts p, .guide-rest p { margin: 0 0 1rem; color: var(--ink-soft); line-height: 1.85; }
+.guide-rest { scroll-margin-top: 1.5rem; margin-top: 1.5rem; padding: 1.5rem; border: 1px solid rgba(194,70,44,.25); border-radius: 1.25rem; background: #fff4ef; }
+.coast-diagram { width: 100%; max-width: 24rem; height: auto; margin-inline: auto; display: block; }
+.coast-diagram__island { fill: #f6e7c6; stroke: rgba(18,57,74,.3); stroke-width: 1.5; }
+.coast-diagram__swell { fill: none; stroke: var(--lagoon-ink); stroke-width: 2.5; marker-end: url(#arrow-swell); }
+.coast-diagram__wind { fill: none; stroke: var(--coral-ink); stroke-width: 2; stroke-dasharray: 5 4; marker-end: url(#arrow-wind); }
+.coast-diagram__head-swell { fill: var(--lagoon-ink); }
+.coast-diagram__head-wind { fill: var(--coral-ink); }
+.coast-diagram text { fill: var(--ink); font-size: var(--t-small); font-weight: 750; }
+
+.points-coasts { display: grid; gap: 1.1rem; }
+.points-coast { scroll-margin-top: 1.5rem; padding: 1.5rem; border: 1px solid var(--line); border-radius: 1.25rem; background: var(--foam); }
+.points-coast h2 { margin: 0 0 .7rem; font-size: var(--t-h3); line-height: 1.3; }
+.point-card { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+.point-card h3 { margin: 0 0 .4rem; font-size: var(--t-body); font-weight: 800; }
+
+@media (min-width: 40rem) {
+  .surf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .surf-block--wide { grid-column: 1 / -1; }
+  .points-coasts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 58rem) {
+  .surf-block { padding: 1.8rem; }
+  .guide-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .guide-coasts { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); padding: 2rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }

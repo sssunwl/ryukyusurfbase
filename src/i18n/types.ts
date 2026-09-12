@@ -1,4 +1,4 @@
-export type Language = 'zh-TW' | 'ja-JP'
+export type Language = 'zh-TW' | 'ja-JP' | 'en'
 
 export type Plan = {
   name: string
@@ -21,6 +21,9 @@ export type Copy = {
     home: string
     about: string
     plans: string
+    surfReport: string
+    surfGuide: string
+    surfPoints: string
     language: string
     openMenu: string
     closeMenu: string
@@ -29,6 +32,7 @@ export type Copy = {
     contactInstagram: string
     pending: string
   }
+  /* 各區塊的 eyebrow 是「該語言的短標籤」，畫面上只顯示另外兩種語言（SPEC §5）。 */
   hero: { eyebrow: string; title: string; body: string; primary: string; secondary: string; scroll: string }
   plansSection: { eyebrow: string; title: string; body: string; duration: string; price: string; included: string; items: Plan[] }
   why: { eyebrow: string; title: string; items: Array<{ title: string; body: string }> }

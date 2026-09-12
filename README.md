@@ -32,6 +32,51 @@ npm run preview
 
 海浪聲預設靜音，不會自動播放；使用者開啟後會淡入，頁面切到背景時暫停。語言與音效偏好會保存在瀏覽器的 localStorage。所有動效在 `prefers-reduced-motion: reduce` 下停止。
 
+## 衝浪情報 API（Phase 1.5，`worker/`）
+
+Cloudflare Worker＋D1。它會抓氣象廳的潮位表、府縣天氣預報與警報，整理成 `GET /api/surf-report`，並用 Cron 發 Telegram 頻道報告。規格在 `docs/SPEC.md` §6。
+
+### 本機開發
+
+```bash
+cd worker
+npm install
+npm run db:init:local
+npm run dev
+```
+
+API 會開在 `http://localhost:8787`。前端要接上本機 API 時：
+
+```bash
+VITE_SURF_API_BASE=http://localhost:8787 npm run dev
+```
+
+本機可以手動觸發排程，例如 `curl "http://localhost:8787/__scheduled?cron=15+20+*+*+*"` 會發今天的報告。沒有設定 token 時不會真的發送，只會在 `tg_posts` 記一筆 `skipped`。
+
+### 測試與檢查
+
+```bash
+cd worker
+npm test
+npm run typecheck
+```
+
+回到專案根目錄執行 `npm run check:forecast-words`，會掃描衝浪情報的文案與 TG 訊息模板，確認沒有出現判斷字眼（SPEC §6.1）。
+
+### 上線步驟（SS 手動操作）
+
+1. `cd worker && npx wrangler login`
+2. `npx wrangler d1 create ryukyusurfbase`，把回傳的 `database_id` 填進 `wrangler.toml`
+3. `npx wrangler d1 execute ryukyusurfbase --remote --file=schema.sql`
+4. 建立 Telegram 公開頻道，把 `@Ryukyusurf_bot` 設成頻道管理員，再把頻道 ID（例如 `@頻道名稱`）填進 `wrangler.toml` 的 `TELEGRAM_CHANNEL_ID`
+5. `npx wrangler secret put TELEGRAM_BOT_TOKEN`，接著 `npx wrangler secret put TELEGRAM_WEBHOOK_SECRET`（自己產生一串隨機字）
+6. `npx wrangler deploy`
+7. 在自己的終端機設定 webhook。token 不要貼進任何檔案或對話：
+   `curl -X POST "https://api.telegram.org/bot<TOKEN>/setWebhook" -d "url=https://<worker 網址>/telegram/webhook" -d "secret_token=<SECRET>" -d 'allowed_updates=["channel_post","edited_channel_post"]'`
+8. 到 GitHub repo → Settings → Secrets and variables → Actions → Variables，新增 `SURF_API_BASE`，值填 Worker 網址，然後重新部署預覽站
+
+`MODEL_LAYER_ENABLED` 維持 `"false"`。要等氣象廳回覆諮詢，並且買了 Open-Meteo 商用方案，才會打開（SPEC §6.2）。目前模型數據層還沒有實作，只有功能開關和 Windy 外部連結。
+
 ## 部署
 
 兩個目標，用 vite 的 `--mode` 區分 base path：

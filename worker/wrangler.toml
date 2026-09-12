@@ -1,0 +1,30 @@
+# 衝浪情報 API（SPEC §6.5）。
+# 部署、建立 D1、設定 secrets 都由 SS 手動處理，這個檔案不放任何憑證。
+name = "ryukyusurfbase-api"
+main = "src/index.ts"
+compatibility_date = "2026-09-01"
+
+[triggers]
+# 以 UTC 撰寫：
+#   10 20,2,8  → JST 05:10／11:10／17:10 抓氣象廳預報
+#   15 20      → JST 05:15 發今天的報告
+#   15 2       → JST 11:15 發明天的報告
+#   0 21 * * 1 → JST 週二 06:00 補抓潮位表年檔
+crons = ["10 20,2,8 * * *", "15 20 * * *", "15 2 * * *", "0 21 * * 1"]
+
+[vars]
+ALLOWED_ORIGINS = "https://sssunwl.github.io,https://ryukyusurfbase.sssuni.com"
+SITE_URL = "https://sssunwl.github.io/ryukyusurfbase"
+# 公開頻道的 chat id（例如 @ryukyusurf_channel 或 -100…），頻道建好後由 SS 填入
+TELEGRAM_CHANNEL_ID = ""
+# 只有 SS 能改成 "true"（SPEC §6.2：要等氣象廳確認＋Open-Meteo 商用方案）
+MODEL_LAYER_ENABLED = "false"
+
+# secrets（用 `wrangler secret put` 設定，絕不寫進這個檔案）：
+#   TELEGRAM_BOT_TOKEN
+#   TELEGRAM_WEBHOOK_SECRET
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ryukyusurfbase"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"

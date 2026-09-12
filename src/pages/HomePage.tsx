@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
+import { Eyebrow } from '../components/Eyebrow'
 import { MotionSection } from '../components/MotionSection'
 import { ZoneMarker } from '../components/ZoneMarker'
 import { WaveCanvas } from '../components/WaveCanvas'
 import { WaveDivider } from '../components/WaveDivider'
+import { dictionaries, tri } from '../i18n/dictionaries'
 import { useLanguage } from '../i18n/LanguageContext'
 
 const instagramUrl = 'https://www.instagram.com/ryukyusurfbase/'
@@ -16,7 +18,7 @@ export function HomePage() {
         <WaveCanvas />
         <div className="shell hero-content">
           <ZoneMarker {...copy.markers.hero} />
-          <p className="eyebrow">{copy.hero.eyebrow}</p>
+          <Eyebrow labels={tri(dictionaries, (c) => c.hero.eyebrow)} />
           <h1 id="hero-title">{copy.hero.title}</h1>
           <p className="hero-copy">{copy.hero.body}</p>
           <div className="button-row">
@@ -32,7 +34,7 @@ export function HomePage() {
         <div className="shell"><ZoneMarker {...copy.markers.plans} tone="dark" /></div>
         <div className="shell">
           <div className="section-heading section-heading--dark">
-            <p className="eyebrow">{copy.plansSection.eyebrow}</p>
+            <Eyebrow labels={tri(dictionaries, (c) => c.plansSection.eyebrow)} />
             <h2 id="plans-title">{copy.plansSection.title}</h2>
             <p>{copy.plansSection.body}</p>
           </div>
@@ -62,7 +64,7 @@ export function HomePage() {
         <div className="shell"><ZoneMarker {...copy.markers.why} /></div>
         <div className="shell why-layout">
           <div className="section-heading section-heading--sticky">
-            <p className="eyebrow">{copy.why.eyebrow}</p>
+            <Eyebrow labels={tri(dictionaries, (c) => c.why.eyebrow)} />
             <h2 id="why-title">{copy.why.title}</h2>
             <div className="tide-mark" aria-hidden="true"><span /><span /><span /></div>
           </div>
@@ -81,7 +83,7 @@ export function HomePage() {
         <div className="shell"><ZoneMarker {...copy.markers.day} /></div>
         <div className="shell">
           <div className="section-heading section-heading--day">
-            <p className="eyebrow">{copy.day.eyebrow}</p>
+            <Eyebrow labels={tri(dictionaries, (c) => c.day.eyebrow)} />
             <h2 id="day-title">{copy.day.title}</h2>
             <p>{copy.day.body}</p>
           </div>
@@ -105,7 +107,7 @@ export function HomePage() {
             <span>KAITO</span><small>{copy.coach.placeholder}</small>
           </div>
           <div className="coach-copy">
-            <p className="eyebrow">{copy.coach.eyebrow}</p>
+            <Eyebrow labels={tri(dictionaries, (c) => c.coach.eyebrow)} />
             <h2 id="coach-title">{copy.coach.title}</h2>
             <p>{copy.coach.intro}</p>
             <Link className="text-link text-link--dark" to="/about">{copy.coach.link}<ArrowIcon /></Link>
@@ -117,7 +119,7 @@ export function HomePage() {
         <div className="shell"><ZoneMarker {...copy.markers.faq} /></div>
         <div className="shell faq-layout">
           <div className="section-heading">
-            <p className="eyebrow">{copy.faq.eyebrow}</p>
+            <Eyebrow labels={tri(dictionaries, (c) => c.faq.eyebrow)} />
             <h2 id="faq-title">{copy.faq.title}</h2>
           </div>
           <div className="faq-list">
@@ -136,7 +138,7 @@ export function HomePage() {
         <div className="booking-line booking-line--one" aria-hidden="true" />
         <div className="booking-line booking-line--two" aria-hidden="true" />
         <div className="shell booking-content">
-          <p className="eyebrow">{copy.booking.eyebrow}</p>
+          <Eyebrow labels={tri(dictionaries, (c) => c.booking.eyebrow)} />
           <h2 id="booking-title">{copy.booking.title}</h2>
           <p>{copy.booking.body}</p>
           <a className="button button--light" href={instagramUrl} target="_blank" rel="noreferrer">{copy.booking.button}<ArrowIcon /></a>

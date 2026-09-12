@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
+import { Eyebrow } from '../components/Eyebrow'
 import { MotionSection } from '../components/MotionSection'
 import { WaveDivider } from '../components/WaveDivider'
+import { dictionaries, tri } from '../i18n/dictionaries'
 import { useLanguage } from '../i18n/LanguageContext'
 
 export function PlansPage() {
@@ -10,7 +12,7 @@ export function PlansPage() {
     <div className="inner-page plans-page">
       <section className="inner-hero inner-hero--plans" aria-labelledby="plans-page-title">
         <div className="shell inner-hero__content">
-          <p className="eyebrow">{copy.plansPage.eyebrow}</p>
+          <Eyebrow labels={tri(dictionaries, (c) => c.plansPage.eyebrow)} />
           <h1 id="plans-page-title">{copy.plansPage.title}</h1>
           <p>{copy.plansPage.lead}</p>
         </div>

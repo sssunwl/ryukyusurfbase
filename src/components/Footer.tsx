@@ -29,7 +29,13 @@ export function Footer() {
       </div>
       <div className="shell footer-bottom">
         <span>© {new Date().getFullYear()} {copy.footer.copyright}</span>
-        <span><Link to="/plans">{copy.common.plans}</Link> · <Link to="/about">{copy.common.about}</Link></span>
+        <span className="footer-bottom__links">
+          <Link to="/plans">{copy.common.plans}</Link>
+          <Link to="/surf-report">{copy.common.surfReport}</Link>
+          <Link to="/surf-guide">{copy.common.surfGuide}</Link>
+          <Link to="/surf-points">{copy.common.surfPoints}</Link>
+          <Link to="/about">{copy.common.about}</Link>
+        </span>
       </div>
     </footer>
   )

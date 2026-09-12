@@ -1,10 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
-import { jaJP } from './ja-JP'
+import { dictionaries, htmlLang, LANGUAGES } from './dictionaries'
 import type { Copy, Language } from './types'
-import { zhTW } from './zh-TW'
 
 const STORAGE_KEY = 'ryukyu-surf-language'
-const dictionaries: Record<Language, Copy> = { 'zh-TW': zhTW, 'ja-JP': jaJP }
 
 type LanguageContextValue = {
   language: Language
@@ -16,8 +14,12 @@ const LanguageContext = createContext<LanguageContextValue | null>(null)
 
 function getInitialLanguage(): Language {
   if (typeof window === 'undefined') return 'zh-TW'
-  const saved = window.localStorage.getItem(STORAGE_KEY)
-  return saved === 'ja-JP' ? 'ja-JP' : 'zh-TW'
+  try {
+    const saved = window.localStorage.getItem(STORAGE_KEY)
+    return LANGUAGES.find((lang) => lang === saved) ?? 'zh-TW'
+  } catch {
+    return 'zh-TW'
+  }
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
@@ -25,12 +27,16 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLanguage = (nextLanguage: Language) => {
     setLanguageState(nextLanguage)
-    window.localStorage.setItem(STORAGE_KEY, nextLanguage)
+    try {
+      window.localStorage.setItem(STORAGE_KEY, nextLanguage)
+    } catch {
+      // IG 內建瀏覽器等環境可能禁用 localStorage，語言仍可在本次瀏覽中切換
+    }
   }
 
   useEffect(() => {
     const copy = dictionaries[language]
-    document.documentElement.lang = language === 'zh-TW' ? 'zh-Hant' : 'ja'
+    document.documentElement.lang = htmlLang[language]
     document.title = copy.meta.title
     document.querySelector('meta[name="description"]')?.setAttribute('content', copy.meta.description)
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', copy.meta.title)
