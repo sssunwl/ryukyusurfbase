@@ -6,8 +6,7 @@ import { WaveCanvas } from '../components/WaveCanvas'
 import { WaveDivider } from '../components/WaveDivider'
 import { byLanguage, dictionaries, otherLanguage } from '../i18n/dictionaries'
 import { useLanguage } from '../i18n/LanguageContext'
-
-const instagramUrl = 'https://www.instagram.com/ryukyusurfbase/'
+import { BOOKING_FORM_URL, INSTAGRAM_URL } from '../links'
 
 export function HomePage() {
   const { copy, language } = useLanguage()
@@ -23,7 +22,7 @@ export function HomePage() {
           <h1 id="hero-title">{copy.hero.title}</h1>
           <p className="hero-copy">{copy.hero.body}</p>
           <div className="button-row">
-            <a className="button button--primary" href={instagramUrl} target="_blank" rel="noreferrer">{copy.hero.primary}<ArrowIcon /></a>
+            <a className="button button--primary" href={BOOKING_FORM_URL} target="_blank" rel="noreferrer">{copy.hero.primary}<ArrowIcon /></a>
             <Link className="text-link" to="/plans">{copy.hero.secondary}<ArrowIcon /></Link>
           </div>
         </div>
@@ -49,8 +48,8 @@ export function HomePage() {
                 <p className="plan-card__audience">{plan.forWhom}</p>
                 <p>{plan.description}</p>
                 <dl>
-                  <div><dt>{copy.plansSection.duration}</dt><dd>TBD</dd></div>
-                  <div><dt>{copy.plansSection.price}</dt><dd>TBD</dd></div>
+                  <div><dt>{copy.plansSection.duration}</dt><dd>{plan.duration}</dd></div>
+                  <div><dt>{copy.plansSection.price}</dt><dd>{plan.priceSummary}</dd></div>
                   <div><dt>{copy.plansSection.included}</dt><dd>{plan.includes}</dd></div>
                 </dl>
               </article>
@@ -143,7 +142,8 @@ export function HomePage() {
           <Eyebrow labels={byLanguage(dictionaries, (c) => c.booking.eyebrow)} />
           <h2 id="booking-title">{copy.booking.title}</h2>
           <p>{copy.booking.body}</p>
-          <a className="button button--light" href={instagramUrl} target="_blank" rel="noreferrer">{copy.booking.button}<ArrowIcon /></a>
+          <a className="button button--light" href={BOOKING_FORM_URL} target="_blank" rel="noreferrer">{copy.booking.button}<ArrowIcon /></a>
+          <div className="booking-alt"><a className="text-link text-link--dark" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">{copy.booking.alt}</a></div>
           <small>{copy.booking.note}</small>
         </div>
       </MotionSection>

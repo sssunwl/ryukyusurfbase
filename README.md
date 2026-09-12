@@ -27,8 +27,8 @@ npm run preview
 - `public/audio/ocean.mp3`：請補 20–30 秒、可無縫循環且小於 400KB 的海浪聲 MP3。目前只有佔位檔，不含音訊內容。
 - **品牌 Logo**：已於 2026-09-10 換上 Kaito 的正式 logo（`public/logo.png`）。若之後拿到 SVG 原檔，可以再換上以提高清晰度。
 - 正式照片：Hero 橫幅、首頁教練照、`/about` 教練照；請提供原檔後輸出 WebP 與三段響應式尺寸。現階段全部使用標有 `data-placeholder` 的 CSS 漸層。
-- 三個方案的價格、時長、包含與不包含項目：目前全部顯示 `TBD`。
-- 取消政策、必讀規則、接送範圍、營業季節：待 Kaito 確認。（Facebook 與 Threads 連結已於 2026-09-10 補上）
+- 方案：衝浪體驗、衝浪導覽的價格與內容已於 2026-09-12 補上；Surf Trip 仍是 `TBD`。
+- 接送範圍、營業季節、取消費用金額：待 Kaito 確認。取消政策、參加須知、在地規則已補上；Facebook 與 Threads 連結已於 2026-09-10 補上。完整清單見 `docs/QUESTIONS.md`。
 
 海浪聲預設靜音，不會自動播放；使用者開啟後會淡入，頁面切到背景時暫停。語言與音效偏好會保存在瀏覽器的 localStorage。所有動效在 `prefers-reduced-motion: reduce` 下停止。
 

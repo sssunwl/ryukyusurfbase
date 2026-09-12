@@ -311,12 +311,35 @@ button { font: inherit; }
   .story-copy > p { font-size: var(--t-body); }
   .plan-detail__head { padding: 2rem; }
   .plan-detail__summary div { padding: 1.25rem 1.5rem; }
-  .plan-detail__body { padding: 2rem; grid-template-columns: repeat(4, 1fr); }
+  .plan-detail__body { padding: 2rem; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.5rem; }
+  .plan-info { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .info-card--wide { grid-column: 1 / -1; }
   .plan-detail__description { grid-column: 1 / -1; }
   .plan-page-action { flex-direction: row; justify-content: center; }
 }
 
-/* ---------- 三語語言切換、footer 連結 ---------- */
+/* ---------- 方案頁：價格、清單、共用資訊（2026-09-12 Kaito 提供內容後） ---------- */
+.plan-list { margin: 0; padding-left: 1.15rem; display: grid; gap: .35rem; color: var(--ink-soft); line-height: 1.75; }
+.plan-list li::marker { color: var(--lagoon-ink); }
+.price-list { margin: 0; display: grid; }
+.price-list div { padding-block: .55rem; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; border-bottom: 1px solid rgba(18,57,74,.1); }
+.price-list dt { color: var(--ink-soft); font-size: var(--t-small); }
+.price-list dd { margin: 0; font-size: var(--t-body); font-weight: 800; font-variant-numeric: tabular-nums; text-align: right; }
+.plan-detail__body .plan-note { margin-top: .9rem; padding: .8rem 1rem; border-radius: .75rem; background: var(--shore); font-size: var(--t-small); }
+.plan-detail__body .plan-subhead { margin-top: 1.3rem; }
+.plan-info { margin-top: 2.5rem; display: grid; gap: 1.1rem; }
+.info-card { padding: 1.5rem; border: 1px solid var(--line); border-radius: 1.25rem; background: var(--foam); }
+.info-card .eyebrow { margin-bottom: .35rem; }
+.info-card h2 { margin: 0 0 1rem; font-size: var(--t-h3); line-height: 1.3; }
+.info-card .plan-list--note { margin-top: 1rem; font-size: var(--t-small); }
+.plan-booking { margin-top: 3.5rem; text-align: center; }
+.plan-booking h2 { margin: 0; font-size: var(--t-h2); font-weight: 800; line-height: 1.15; }
+.plan-booking > p:not(.eyebrow) { max-width: 34rem; margin: 1rem auto 0; color: var(--ink-soft); line-height: 1.8; }
+.plan-booking .plan-page-action { padding-top: 2rem; }
+.plan-booking__home { margin-top: 2rem; }
+.booking-alt { margin-top: 1.1rem; }
+
+/* ---------- 語言切換、footer 連結 ---------- */
 .language-switch__item { display: inline-flex; align-items: center; gap: .5rem; }
 .footer-bottom__links { display: flex; flex-wrap: wrap; gap: .3rem 1rem; }
 

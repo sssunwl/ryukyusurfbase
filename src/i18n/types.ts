@@ -1,12 +1,26 @@
 /** 繁中為主、日文為輔（SPEC §3）。不做英文版，英文只放在專業用詞旁的括號裡。 */
 export type Language = 'zh-TW' | 'ja-JP'
 
+export type PriceRow = { label: string; value: string }
+
+/** 方案內容以 Kaito 提供的收費方案為準（2026-09-12）。沒有資料的方案 prices 為空陣列，頁面顯示待補。 */
 export type Plan = {
   name: string
+  /** 內部識別用，畫面不顯示 */
   englishName: string
   forWhom: string
   description: string
+  duration: string
+  /** 首頁卡片與方案頁摘要用的價格 */
+  priceSummary: string
+  /** 首頁卡片的「包含」摘要 */
   includes: string
+  audience: string[]
+  features: string[]
+  prices: PriceRow[]
+  priceNote: string | null
+  included: string[]
+  extras: string[]
 }
 
 export type Copy = {
@@ -40,7 +54,7 @@ export type Copy = {
   day: { eyebrow: string; title: string; body: string; steps: Array<{ number: string; title: string; body: string }> }
   coach: { eyebrow: string; title: string; intro: string; link: string; placeholder: string }
   faq: { eyebrow: string; title: string; items: Array<{ question: string; answer: string }> }
-  booking: { eyebrow: string; title: string; body: string; note: string; button: string }
+  booking: { eyebrow: string; title: string; body: string; note: string; button: string; alt: string }
   footer: { locationLabel: string; location: string; seasonLabel: string; season: string; socialLabel: string; linkPending: string; copyright: string }
   audio: { on: string; off: string; unavailable: string }
   aboutPage: { eyebrow: string; title: string; lead: string; story: string; placeholder: string; back: string }
@@ -50,10 +64,25 @@ export type Copy = {
     lead: string
     suitable: string
     details: string
+    audience: string
+    features: string
+    priceDetail: string
     included: string
-    notIncluded: string
-    cancellation: string
-    rules: string
+    extras: string
     pendingBody: string
+    locationTitle: string
+    locationBody: string[]
+    rentalTitle: string
+    rentals: PriceRow[]
+    rentalNotes: string[]
+    policyTitle: string
+    policies: string[]
+    rulesTitle: string
+    rules: string[]
+    localTitle: string
+    localRules: string[]
+    bookingTitle: string
+    bookingBody: string
+    bookingButton: string
   }
 }

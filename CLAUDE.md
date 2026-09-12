@@ -10,7 +10,7 @@ Phase 1 靜態前台已完成，並部署到預覽站 https://sssunwl.github.io/
 
 目前在等的事：
 - **氣象廳**：確認模型數據層算不算預報業務。諮詢信草稿在 `docs/JMA_INQUIRY.md`，由 SS 或 Kaito 寄出
-- **Kaito**：浪點資料（`docs/KAITO_SPOTS.md`）、方案價格與時長、接送範圍、取消政策、正式照片、海浪音檔，以及是否同意 `/about` 經歷上線（完整清單在 SPEC §10 與 `docs/QUESTIONS.md`）
+- **Kaito**：2026-09-12 已提供衝浪體驗與衝浪導覽的價格、Google 預約表單，網站已更新，預約按鈕也改導向表單。還在等的有：Surf Trip、夏季後的價格、飯店接送有無、正式照片、海浪音檔、是否同意 `/about` 經歷上線；另外還有幾處跟網站現有內容衝突（見 `docs/QUESTIONS.md`）
 
 這些資料在 Kaito 提供之前一律維持待補，不得自行編造，也不得拿 `_scraped/` 的素材上線。Phase 1 驗收前不進 Phase 2。
 
