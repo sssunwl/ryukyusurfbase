@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Eyebrow } from '../components/Eyebrow'
 import { WaveDivider } from '../components/WaveDivider'
-import { tri } from '../i18n/dictionaries'
+import { byLanguage } from '../i18n/dictionaries'
 import { useLanguage } from '../i18n/LanguageContext'
 import { surfCopy } from '../i18n/surf'
 import { SURF_POINTS, type SurfPoint } from '../surf/points'
@@ -16,7 +16,7 @@ export function SurfPointsPage() {
     <div className="inner-page surf-page">
       <section className="inner-hero" aria-labelledby="surf-points-title">
         <div className="shell inner-hero__content">
-          <Eyebrow labels={tri(surfCopy, (c) => c.points.eyebrow)} />
+          <Eyebrow labels={byLanguage(surfCopy, (c) => c.points.eyebrow)} />
           <h1 id="surf-points-title">{p.title}</h1>
           <p>{p.lead}</p>
         </div>

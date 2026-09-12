@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Eyebrow } from '../components/Eyebrow'
 import { MotionSection } from '../components/MotionSection'
 import { WaveDivider } from '../components/WaveDivider'
-import { dictionaries, tri } from '../i18n/dictionaries'
+import { byLanguage, dictionaries } from '../i18n/dictionaries'
 import { useLanguage } from '../i18n/LanguageContext'
 
 export function AboutPage() {
@@ -12,7 +12,7 @@ export function AboutPage() {
     <div className="inner-page about-page">
       <section className="inner-hero" aria-labelledby="about-page-title">
         <div className="shell inner-hero__content">
-          <Eyebrow labels={tri(dictionaries, (c) => c.aboutPage.eyebrow)} />
+          <Eyebrow labels={byLanguage(dictionaries, (c) => c.aboutPage.eyebrow)} />
           <h1 id="about-page-title">{copy.aboutPage.title}</h1>
           <p>{copy.aboutPage.lead}</p>
         </div>

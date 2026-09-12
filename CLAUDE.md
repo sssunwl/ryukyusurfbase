@@ -6,7 +6,7 @@
 
 Phase 1 靜態前台已完成，並部署到預覽站 https://sssunwl.github.io/ryukyusurfbase/ （push `main` 會自動部署，已設 noindex）。2026-09-11 SS 定案把整站改成**淺色海島風**，細節見 SPEC §5。正式站 Cloudflare Pages 尚未設定。
 
-**2026-09-12 SS 定案：Phase 1.5「衝浪情報＋三語」排在 Phase 2 之前做**，規格見 SPEC §6。同一天因 Codex token 不足，改由 Claude 依 `docs/CODEX_FORECAST.md` 實作完成：三語、`worker/`（潮位表、氣象廳預報與警報、TG 推播、現場報告 webhook），以及三個衝浪頁面，在本機驗證過。Worker 還沒部署，上線步驟見 README。模型數據層目前只有開關和 Windy 連結，還沒實作。
+**2026-09-12 SS 定案：Phase 1.5「衝浪情報＋三語」排在 Phase 2 之前做**，規格見 SPEC §6。同一天因 Codex token 不足，改由 Claude 依 `docs/CODEX_FORECAST.md` 實作完成（同一天稍後，SS 把語言改成繁中為主、標題附日文小字、不做英文版）：`worker/`（潮位表、氣象廳預報與警報、TG 推播、現場報告 webhook），以及三個衝浪頁面，在本機驗證過。Worker 還沒部署，上線步驟見 README。模型數據層目前只有開關和 Windy 連結，還沒實作。
 
 目前在等的事：
 - **氣象廳**：確認模型數據層算不算預報業務。諮詢信草稿在 `docs/JMA_INQUIRY.md`，由 SS 或 Kaito 寄出
@@ -23,7 +23,7 @@ Phase 1 靜態前台已完成，並部署到預覽站 https://sssunwl.github.io/
 3. 網站**不做 IG feed 牆**。素材是人工挑選重寫過的，不是鏡像 IG。
 4. 海浪聲**預設靜音**，必須有明顯開關，且開關狀態記在 localStorage。絕不自動播放。
 5. 所有動畫尊重 `prefers-reduced-motion`。海浪背景用 Canvas/SVG，**不准用影片背景**。
-6. 語言：**繁中（預設）、日文、英文**。英文 2026-09-12 由 Phase 3 提前。頁面與區塊標題三語呈現：主標題用目前語言，另外兩種語言放在上方 eyebrow（SPEC §5）。
+6. 語言（2026-09-12 SS 定案）：**網頁內容以繁中為主**，日文為輔（可切換）。標題上方的 eyebrow 小字放日文，日文頁面則放繁中。**不做英文版**，英文只放在專業用詞旁的括號，例如「湧浪（swell）」（SPEC §3、§5）。
 7. 未經 SS 確認，不得新增 SPEC 以外的頁面、方案、價格或任何看起來像事實的數字。價格未定案前一律用 `TBD` 佔位，不要編。
 
 8. **憂鬱症那段只准出現在 `/about`**。首頁「關於教練」區只放一到兩句引子（不得提及憂鬱症字眼），hero、SEO description、og:description、方案卡、FAQ 一律不得使用這段經歷做賣點。SS 已與客戶確認此為定案。

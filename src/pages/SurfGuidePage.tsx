@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Eyebrow } from '../components/Eyebrow'
 import { CoastDiagram } from '../components/surf/CoastDiagram'
 import { WaveDivider } from '../components/WaveDivider'
-import { tri } from '../i18n/dictionaries'
+import { byLanguage } from '../i18n/dictionaries'
 import { useLanguage } from '../i18n/LanguageContext'
 import { surfCopy } from '../i18n/surf'
 
@@ -24,7 +24,7 @@ export function SurfGuidePage() {
     <div className="inner-page surf-page">
       <section className="inner-hero" aria-labelledby="surf-guide-title">
         <div className="shell inner-hero__content">
-          <Eyebrow labels={tri(surfCopy, (c) => c.guide.eyebrow)} />
+          <Eyebrow labels={byLanguage(surfCopy, (c) => c.guide.eyebrow)} />
           <h1 id="surf-guide-title">{g.title}</h1>
           <p>{g.lead}</p>
         </div>

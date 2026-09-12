@@ -4,7 +4,7 @@ import type { SurfDay, SurfReport, TideDay, Tri } from '../../shared/surf'
 import { Eyebrow } from '../components/Eyebrow'
 import { TideChart } from '../components/surf/TideChart'
 import { WaveDivider } from '../components/WaveDivider'
-import { tri } from '../i18n/dictionaries'
+import { byLanguage } from '../i18n/dictionaries'
 import { useLanguage } from '../i18n/LanguageContext'
 import { surfCopy, type SurfCopy } from '../i18n/surf'
 import type { Language } from '../i18n/types'
@@ -12,7 +12,7 @@ import { COAST_WINDY, pickTri, useSurfReport } from '../surf/api'
 
 const JMA_WARNING_PAGE = 'https://www.jma.go.jp/bosai/warning/#area_type=offices&area_code=471000'
 
-const LOCALE: Record<Language, string> = { 'zh-TW': 'zh-TW', 'ja-JP': 'ja-JP', en: 'en-US' }
+const LOCALE: Record<Language, string> = { 'zh-TW': 'zh-TW', 'ja-JP': 'ja-JP' }
 
 function dayTab(date: string, language: Language) {
   const value = new Date(`${date}T12:00:00+09:00`)
@@ -31,7 +31,7 @@ export function SurfReportPage() {
     <div className="inner-page surf-page">
       <section className="inner-hero" aria-labelledby="surf-report-title">
         <div className="shell inner-hero__content">
-          <Eyebrow labels={tri(surfCopy, (c) => c.report.eyebrow)} />
+          <Eyebrow labels={byLanguage(surfCopy, (c) => c.report.eyebrow)} />
           <h1 id="surf-report-title">{s.title}</h1>
           <p>{s.lead}</p>
         </div>
@@ -155,7 +155,7 @@ function Block({ title, s, guide, wide = false, children }: { title: keyof SurfC
     <article className={`surf-block${wide ? ' surf-block--wide' : ''}`}>
       <header className="surf-block__head">
         <div>
-          <Eyebrow labels={tri(surfCopy, (c) => c.report.sections[title])} />
+          <Eyebrow labels={byLanguage(surfCopy, (c) => c.report.sections[title])} />
           <h2>{s.sections[title]}</h2>
         </div>
         {guide && <Link className="surf-block__howto" to={`/surf-guide#${guide}`}>{s.howToRead}</Link>}
@@ -187,7 +187,7 @@ function Warnings({ report, s }: { report: SurfReport; s: SurfCopy['report'] }) 
     <article className={`surf-block surf-block--banner${active.length ? ' surf-warning' : ''}`}>
       <header className="surf-block__head">
         <div>
-          <Eyebrow labels={tri(surfCopy, (c) => c.report.sections.warnings)} />
+          <Eyebrow labels={byLanguage(surfCopy, (c) => c.report.sections.warnings)} />
           <h2>{s.sections.warnings}</h2>
         </div>
         <a className="surf-block__howto" href={JMA_WARNING_PAGE} target="_blank" rel="noreferrer">{s.warningsLink}</a>

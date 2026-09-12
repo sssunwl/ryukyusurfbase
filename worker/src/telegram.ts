@@ -1,5 +1,6 @@
 /**
  * Telegram 頻道推播與現場報告（SPEC §6.4）。
+ * 內容以繁中為主，標題附日文，天氣／風／浪附日文原文（SPEC §3）。
  * 訊息只放數據與氣象廳原文，不得出現任何判斷字眼（SPEC §6.1，由 check:forecast-words 檢查）。
  */
 import type { SurfDay, SurfReport, TideDay, Tri } from '../../shared/surf'
@@ -12,69 +13,71 @@ export type PostKind = 'today' | 'tomorrow'
 
 const escapeHtml = (text: string) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
-/** 三語並列；中日文相同時只寫一次。 */
-function triText(value: Tri | null, fallback = '—') {
+/** 繁中為主，括號附日文原文；中日相同時只寫一次，翻不出中文時只寫日文。 */
+function zhJa(value: Tri | null, fallback = '—') {
   if (!value) return fallback
-  return [...new Set([value['zh-TW'], value['ja-JP'], value.en].filter(Boolean))].join(' / ')
+  const zh = value['zh-TW']
+  if (!zh) return value['ja-JP']
+  return zh === value['ja-JP'] ? zh : `${zh}（${value['ja-JP']}）`
 }
 
-const WEEKDAYS_EN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+const WEEKDAYS_ZH = ['週日', '週一', '週二', '週三', '週四', '週五', '週六']
 
 function tideBlock(label: string, day: TideDay | null) {
   if (!day) return `${label}\n  —`
   const events = (list: TideDay['highs']) => list.map((event) => `${event.time} ${event.cm}cm`).join('・') || '—'
-  return `${label}\n  滿潮 High ${events(day.highs)}\n  乾潮 Low ${events(day.lows)}`
+  return `${label}\n  滿潮 ${events(day.highs)}\n  乾潮 ${events(day.lows)}`
 }
 
 const clock = (iso: string | null) => (iso ? `${iso.slice(0, 10)} ${iso.slice(11, 16)}` : '—')
 
 export function buildDailyMessage(report: SurfReport, day: SurfDay, kind: PostKind, siteUrl: string) {
-  const weekday = WEEKDAYS_EN[new Date(`${day.date}T00:00:00Z`).getUTCDay()]
-  const dayLabel = kind === 'today' ? '今天｜今日｜Today' : '明天｜明日｜Tomorrow'
+  const weekday = WEEKDAYS_ZH[new Date(`${day.date}T00:00:00Z`).getUTCDay()]
+  const dayLabel = kind === 'today' ? '今天｜今日' : '明天｜明日'
   const lines: string[] = [
-    '🌊 <b>琉球衝浪情報｜サーフ情報｜Surf Report</b>',
-    `📅 <b>${day.date} (${weekday})</b>　${dayLabel}`,
+    '🌊 <b>琉球衝浪情報</b>｜サーフ情報',
+    `📅 <b>${day.date}（${weekday}）</b>　${dayLabel}`,
     '',
-    `☀️ 日出 Sunrise ${day.sun.sunrise}　🌇 日落 Sunset ${day.sun.sunset}`,
+    `☀️ 日出 ${day.sun.sunrise}　🌇 日落 ${day.sun.sunset}`,
     '',
-    '<b>潮汐｜潮汐｜Tide</b>',
-    tideBlock('西岸 West・那覇', day.tides.NH),
-    tideBlock('東岸 East・中城湾港', day.tides.ZO),
+    '<b>潮汐</b>｜潮汐',
+    tideBlock('西岸・那霸', day.tides.NH),
+    tideBlock('東岸・中城灣港', day.tides.ZO),
     '',
-    '<b>氣象廳預報｜気象庁の予報｜JMA forecast</b>',
-    `（沖縄気象台 ${clock(report.sources.forecastReportDatetime)}）`,
+    '<b>氣象廳預報</b>｜気象庁の予報',
+    `（沖縄気象台 ${clock(report.sources.forecastReportDatetime)} 發布）`,
   ]
 
   if (day.forecast?.length) {
     for (const area of day.forecast) {
       lines.push(
-        `▸ ${escapeHtml(triText(area.name))}`,
-        `  天氣 Weather：${escapeHtml(triText(area.weather))}`,
-        `  風 Wind：${escapeHtml(triText(area.wind))}`,
-        `  浪 Waves：${escapeHtml(triText(area.wave))}`,
+        `▸ ${escapeHtml(zhJa(area.name))}`,
+        `  天氣：${escapeHtml(zhJa(area.weather))}`,
+        `  風：${escapeHtml(zhJa(area.wind))}`,
+        `  浪高：${escapeHtml(zhJa(area.wave))}`,
       )
     }
   } else {
-    lines.push('尚未發布｜未発表｜Not issued yet')
+    lines.push('尚未發布｜未発表')
   }
 
-  lines.push('', '⚠️ <b>警報・注意報｜Warnings</b>')
+  lines.push('', '⚠️ <b>警報・注意報</b>')
   const active = report.warnings?.areas.filter((area) => area.items.length > 0) ?? []
   if (!report.warnings) {
-    lines.push('資料暫時無法取得｜取得できません｜Unavailable')
+    lines.push('資料暫時無法取得｜取得できません')
   } else if (active.length === 0) {
-    lines.push('目前沒有發布｜発表なし｜None in effect')
+    lines.push('目前沒有發布｜発表なし')
   } else {
     for (const area of active) {
-      const items = area.items.map((item) => `${triText(item.name)}（${item.statuses.map((status) => triText(status)).join('・')}）`).join('、')
-      lines.push(`  ${escapeHtml(triText(area.areaName))}：${escapeHtml(items)}`)
+      const items = area.items.map((item) => `${zhJa(item.name)}：${item.statuses.map((status) => zhJa(status)).join('・')}`).join('、')
+      lines.push(`  ${escapeHtml(zhJa(area.areaName))}｜${escapeHtml(items)}`)
     }
   }
 
   const link = `${siteUrl.replace(/\/$/, '')}/surf-report?date=${day.date}`
   lines.push(
     '',
-    `🔗 <a href="${escapeHtml(link)}">其他日子｜他の日｜More days</a>`,
+    `🔗 <a href="${escapeHtml(link)}">看其他日子｜他の日を見る</a>`,
     '',
     '<i>資料：氣象廳（潮位表、府縣天氣預報、警報注意報），由琉球衝浪基地翻譯整理。這裡只轉載數據與官方預報，不代表能否下水；出發前請再看一次官方資訊與現場狀況。</i>',
   )

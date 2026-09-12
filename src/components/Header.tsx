@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import type { Language } from '../i18n/types'
 
-const LANGUAGE_LABELS: Array<[Language, string]> = [['zh-TW', '繁中'], ['ja-JP', '日本語'], ['en', 'English']]
+const LANGUAGE_LABELS: Array<[Language, string]> = [['zh-TW', '繁中'], ['ja-JP', '日本語']]
 
 export function Header() {
   const { language, setLanguage, copy } = useLanguage()

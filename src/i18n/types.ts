@@ -1,4 +1,5 @@
-export type Language = 'zh-TW' | 'ja-JP' | 'en'
+/** 繁中為主、日文為輔（SPEC §3）。不做英文版，英文只放在專業用詞旁的括號裡。 */
+export type Language = 'zh-TW' | 'ja-JP'
 
 export type Plan = {
   name: string
@@ -32,7 +33,7 @@ export type Copy = {
     contactInstagram: string
     pending: string
   }
-  /* 各區塊的 eyebrow 是「該語言的短標籤」，畫面上只顯示另外兩種語言（SPEC §5）。 */
+  /* 各區塊的 eyebrow 是「該語言的短標籤」，畫面上顯示另一種語言當標題小字（SPEC §5）。 */
   hero: { eyebrow: string; title: string; body: string; primary: string; secondary: string; scroll: string }
   plansSection: { eyebrow: string; title: string; body: string; duration: string; price: string; included: string; items: Plan[] }
   why: { eyebrow: string; title: string; items: Array<{ title: string; body: string }> }

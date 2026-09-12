@@ -47,7 +47,7 @@ export const zhTW: Copy = {
     eyebrow: '跟著浪的一天', title: '一天長什麼樣', body: '海況每天不同，所以順序清楚，時間與浪點保留彈性。',
     steps: [
       { number: '01', title: '飯店接送', body: '會合後，一起往今天可能合適的海岸前進。' },
-      { number: '02', title: '看點', body: '先看浪、風向與現場狀況，再決定在哪裡下水。' },
+      { number: '02', title: '看點（spot check）', body: '先看浪、風向與現場狀況，再決定在哪裡下水。' },
       { number: '03', title: '下水', body: '依你的程度與當天浪況進行衝浪體驗或導覽。' },
       { number: '04', title: '咖啡廳', body: '下水後，到咖啡廳休息、聊聊今天的浪。' },
     ],

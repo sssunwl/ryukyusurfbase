@@ -2,17 +2,18 @@ import { Link } from 'react-router-dom'
 import { Eyebrow } from '../components/Eyebrow'
 import { MotionSection } from '../components/MotionSection'
 import { WaveDivider } from '../components/WaveDivider'
-import { dictionaries, tri } from '../i18n/dictionaries'
+import { byLanguage, dictionaries, otherLanguage } from '../i18n/dictionaries'
 import { useLanguage } from '../i18n/LanguageContext'
 
 export function PlansPage() {
-  const { copy } = useLanguage()
+  const { copy, language } = useLanguage()
+  const otherPlans = dictionaries[otherLanguage(language)].plansSection.items
 
   return (
     <div className="inner-page plans-page">
       <section className="inner-hero inner-hero--plans" aria-labelledby="plans-page-title">
         <div className="shell inner-hero__content">
-          <Eyebrow labels={tri(dictionaries, (c) => c.plansPage.eyebrow)} />
+          <Eyebrow labels={byLanguage(dictionaries, (c) => c.plansPage.eyebrow)} />
           <h1 id="plans-page-title">{copy.plansPage.title}</h1>
           <p>{copy.plansPage.lead}</p>
         </div>
@@ -24,7 +25,10 @@ export function PlansPage() {
             <MotionSection className="plan-detail" key={plan.englishName}>
               <div className="plan-detail__head">
                 <span>0{index + 1}</span>
-                <div><p>{plan.englishName}</p><h2>{plan.name}</h2></div>
+                <div>
+                  {otherPlans[index] && otherPlans[index].name !== plan.name && <p>{otherPlans[index].name}</p>}
+                  <h2>{plan.name}</h2>
+                </div>
               </div>
               <div className="plan-detail__summary">
                 <div><span>{copy.plansPage.suitable}</span><p>{plan.forWhom}</p></div>
