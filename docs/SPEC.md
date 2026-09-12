@@ -54,10 +54,9 @@ Kaito（海斗）是沖繩出生長大的衝浪教練，2025-08-19 開設「琉�
    - 衝浪導覽 — 已經會衝、想找好浪點的人
    - Surf Trip — 多日連續行程，跨區追浪
    每項：對象／時長 TBD／價格 TBD／含什麼
-3. **為什麼是他**（四點，全部有 IG 貼文佐證，不可加碼）
+3. **為什麼是他**（三點，全部有 IG 貼文佐證，不可加碼；「少人數・私人制」已於 2026-09-12 拿掉，因為夏季可能併團）
    - 看浪況才決定去哪：一早先看 2–3 個浪點，必要時開一個半小時跨島
    - 中文溝通：台灣留學一年半
-   - 少人數・私人制
    - 全程拍照錄影，免費給你
 4. **一天長什麼樣**（時間軸：集合 → 看點 → 下水 → 咖啡廳）。**沒有飯店接送**（2026-09-12 SS 確認），預約確認後依滿潮時間通知集合時間
 5. **關於教練**（三句引子 + 連到 `/about`）— 引子只講「沖繩長大、台灣留學一年半、想用海幫到人」，**不得出現憂鬱症字眼**，那段全文只在 `/about`。已定案。
@@ -184,23 +183,25 @@ Kaito 自述全文（繁中／日文），照片。這頁的語氣要安靜、�
 
 ## 7. 預約系統（Phase 2）
 
+> **2026-09-12 SS 決定自建預約系統**，不只用 Google 表單。已經先做了前端示範：客人端 `/booking`、Kaito 端 `/booking/demo-admin`。示範版的資料只存在瀏覽器，日期狀態是假資料，不放進主選單。流程與欄位依 Kaito 現行的 Google 預約表單調整，下面的規格已同步更新。
+
 ### 流程
 1. 訪客選方案 → 選日期（日曆只顯示未來 60 天）
 2. 前端呼叫 `GET /api/availability?from=&to=` → Worker 用 Service Account 讀 Kaito 日曆 freebusy → 回傳每日狀態（可約／已滿／不開放）
-3. 填表：姓名、聯絡方式（LINE ID 或 IG 帳號或 email，至少一）、人數、衝浪經驗（無／有幾次／常衝）、住宿地點、身高體重（配板）、備註
-4. 勾選同意：取消政策 + 免責聲明
+3. 填表（依 Kaito 的 Google 表單）：姓名、拼音（選填）、電話、email、人數、衝浪經驗（第一次／初學者／中級者／進階者）、防寒衣租借件數與身高體重、硬板租借片數（只限衝浪導覽）、備註（不會游泳、受傷經歷、疾病）、得知管道（選填）
+4. 確認頁顯示預估費用（依收費方案試算，當日現金支付），並勾選三項同意：取消政策、參加須知、在地規則，三項都勾才能送出
 5. 送出 → `POST /api/bookings` → 寫 D1，狀態 `pending`
 6. Worker 在 Kaito 日曆建立 **tentative** 事件，標題 `[待確認] 方案 / 姓名 / 人數`
 7. 通知 Kaito（Phase 2 先用 email；LINE Notify 已停止服務，若要 IM 推播走 Telegram Bot）
 8. Kaito 在後台或直接回覆確認 → 狀態轉 `confirmed`，日曆事件轉 confirmed
 
 ### 關鍵設計約束（來自他的實際作業方式，不可簡化掉）
-- **時間是浮動的**：他要看當天浪況才決定幾點、去哪。所以預約**只選日期與時段（上午／下午／整日）**，不選精確時間，不選地點。地點欄位在網站上明講「當天依浪況決定」
-- **天候改期是常態**：表單必須讓客人填備選日期（最多 2 個），且取消政策要顯眼
+- **時間是浮動的**：集合時間由 Kaito 依滿潮時間決定（沖繩大約只能在滿潮前後 4 小時內衝浪），預約確認後才通知；地點也依當天浪況決定。所以預約**只選日期，不選時段、不選地點**（2026-09-12 依 Kaito 的表單修正，原本的「上午／下午／整日」取消）
+- **天候改期是常態**：表單要讓客人填第二希望日期（選填），取消政策要顯眼
 - 預約是**申請**不是確認。全站文案用「送出預約申請」，成功頁明講「Kaito 會在 24 小時內回覆」
 
 ### D1 資料表 `bookings`
-`id, created_at, plan, date_primary, date_alt1, date_alt2, slot(am|pm|full), party_size, contact_type, contact_value, name, experience, accommodation, height_cm, weight_kg, note, status(pending|confirmed|rejected|cancelled|done), gcal_event_id, admin_note`
+`id, created_at, plan(experience|guide), date_primary, date_alt, party_size, name, name_kana, phone, email, experience(first|beginner|intermediate|advanced), wetsuit_count, sizes, hardboard_count, note, source, estimate_jpy, status(pending|confirmed|declined|cancelled|done), gcal_event_id, admin_note`
 
 ### Google Calendar 串接
 - **Service Account**，Kaito 把日曆「共用」給 service account email 並給「變更活動」權限

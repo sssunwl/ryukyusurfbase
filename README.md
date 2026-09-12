@@ -32,6 +32,12 @@ npm run preview
 
 海浪聲預設靜音，不會自動播放；使用者開啟後會淡入，頁面切到背景時暫停。語言與音效偏好會保存在瀏覽器的 localStorage。所有動效在 `prefers-reduced-motion: reduce` 下停止。
 
+## 預約系統示範（Phase 2 前導）
+
+`/booking` 是客人端的預約流程示範，`/booking/demo-admin` 是 Kaito 端的管理畫面示範。這兩頁沒有放進主選單，直接給網址試用。
+
+資料只存在瀏覽器的 localStorage，日期上的「已滿」是用日期算出來的假資料，送出後不會通知任何人。正式預約仍然使用 Kaito 的 Google 表單。正式版規格見 `docs/SPEC.md` §7。
+
 ## 衝浪情報 API（Phase 1.5，`worker/`）
 
 Cloudflare Worker＋D1。它會抓氣象廳的潮位表、府縣天氣預報與警報，整理成 `GET /api/surf-report`，並用 Cron 發 Telegram 頻道報告。規格在 `docs/SPEC.md` §6。

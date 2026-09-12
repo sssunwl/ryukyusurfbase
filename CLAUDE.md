@@ -8,6 +8,8 @@ Phase 1 靜態前台已完成，並部署到預覽站 https://sssunwl.github.io/
 
 **2026-09-12 SS 定案：Phase 1.5「衝浪情報＋三語」排在 Phase 2 之前做**，規格見 SPEC §6。同一天因 Codex token 不足，改由 Claude 依 `docs/CODEX_FORECAST.md` 實作完成（同一天稍後，SS 把語言改成繁中為主、標題附日文小字、不做英文版）：`worker/`（潮位表、氣象廳預報與警報、TG 推播、現場報告 webhook），以及三個衝浪頁面，在本機驗證過。Worker 還沒部署，上線步驟見 README。模型數據層目前只有開關和 Windy 連結，還沒實作。
 
+**2026-09-12 SS 決定自建預約系統**：已先做前端示範，客人端 `/booking`、Kaito 端 `/booking/demo-admin`。資料只存在 localStorage，日期狀態是假資料，不放進主選單。正式預約仍用 Kaito 的 Google 表單，正式版規格見 SPEC §7。
+
 目前在等的事：
 - **氣象廳**：確認模型數據層算不算預報業務。諮詢信草稿在 `docs/JMA_INQUIRY.md`，由 SS 或 Kaito 寄出
 - **Kaito**：2026-09-12 已提供衝浪體驗與衝浪導覽的價格、Google 預約表單，網站已更新，預約按鈕也改導向表單。還在等的有：Surf Trip、夏季後的價格、正式照片、海浪音檔、是否同意 `/about` 經歷上線；另外還有幾處跟網站現有內容衝突（見 `docs/QUESTIONS.md`）

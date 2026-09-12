@@ -4,6 +4,8 @@ import { AudioToggle } from './components/AudioToggle'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { AboutPage } from './pages/AboutPage'
+import { BookingAdminDemoPage } from './pages/BookingAdminDemoPage'
+import { BookingDemoPage } from './pages/BookingDemoPage'
 import { HomePage } from './pages/HomePage'
 import { PlansPage } from './pages/PlansPage'
 import { SurfGuidePage } from './pages/SurfGuidePage'
@@ -34,6 +36,9 @@ export default function App() {
           <Route path="/surf-report" element={<SurfReportPage />} />
           <Route path="/surf-guide" element={<SurfGuidePage />} />
           <Route path="/surf-points" element={<SurfPointsPage />} />
+          {/* 預約系統示範：不放進主選單，直接給網址試用（SPEC §7） */}
+          <Route path="/booking" element={<BookingDemoPage />} />
+          <Route path="/booking/demo-admin" element={<BookingAdminDemoPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
