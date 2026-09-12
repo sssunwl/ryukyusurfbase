@@ -10,6 +10,8 @@ Phase 1 靜態前台已完成，並部署到預覽站 https://sssunwl.github.io/
 
 **2026-09-12 SS 決定自建預約系統**：已先做前端示範，客人端 `/booking`、Kaito 端 `/booking/demo-admin`。資料只存在 localStorage，日期狀態是假資料，不放進主選單。正式預約仍用 Kaito 的 Google 表單，正式版規格見 SPEC §7。
 
+**2026-09-12 SS 定案後台範圍**：三種編輯方式（表單、區塊排版、網頁上直接點字修改）都做、也做 Blog，網址改為 `ryukyusurfbase.sssuni.com`。規格與 A–D 分期在 `docs/ADMIN_SPEC.md`，還沒施工。
+
 目前在等的事：
 - **氣象廳**：確認模型數據層算不算預報業務。諮詢信草稿在 `docs/JMA_INQUIRY.md`，由 SS 或 Kaito 寄出
 - **Kaito**：2026-09-12 已提供衝浪體驗與衝浪導覽的價格、Google 預約表單，網站已更新，預約按鈕也改導向表單。還在等的有：Surf Trip、夏季後的價格、正式照片、海浪音檔、是否同意 `/about` 經歷上線；另外還有幾處跟網站現有內容衝突（見 `docs/QUESTIONS.md`）

@@ -29,7 +29,7 @@ Kaito（海斗）是沖繩出生長大的衝浪教練，2025-08-19 開設「琉�
 - 線上付款 — 短期一律現場收款
 - IG feed 自動同步牆
 - 會員系統、登入、多教練排班
-- 部落格／SEO 內容農場
+- SEO 內容農場（2026-09-12 SS 改為要做簡單 Blog，由 Kaito 自己寫，見 `docs/ADMIN_SPEC.md`）
 - 電商賣板／賣周邊
 - **自己推算的浪況判斷、評分、推薦時段** — 受氣象業務法規範，見 §6.1
 
@@ -210,6 +210,8 @@ Kaito 自述全文（繁中／日文），照片。這頁的語氣要安靜、�
 - Worker 端自簽 JWT 換 access token（Workers 不能用 googleapis SDK，用 `jose` 或手刻 WebCrypto RS256）
 
 ## 8. 後台（Phase 3）
+
+> **2026-09-12 SS 擴大範圍**：三種編輯方式（表單、區塊排版、網頁上直接點字修改）、Blog、自訂頁面，網址改為 `ryukyusurfbase.sssuni.com`。完整規格與分期見 `docs/ADMIN_SPEC.md`，與本節衝突時以該檔為準。
 
 `/admin`，Cloudflare Access（Google 登入，白名單 Kaito + SS 兩個 email）。手機優先。
 
